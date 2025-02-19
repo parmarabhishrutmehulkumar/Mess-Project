@@ -1,6 +1,7 @@
+// Settings.js
 import React, { useState } from "react";
 import Sidebar from "./Sidebar"; // Import Sidebar
-import { FaUser, FaEnvelope, FaLock, FaPalette, FaBell } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaLock, FaBell } from "react-icons/fa";
 import "./Settings.css"; // Import CSS for styling
 
 const Settings = () => {
@@ -8,7 +9,6 @@ const Settings = () => {
     name: "",
     email: "",
     password: "",
-    theme: "light",
     notifications: true,
   });
 
@@ -61,16 +61,6 @@ const Settings = () => {
             value={settings.password}
             onChange={handleChange}
           />
-        </div>
-
-        {/* Theme Selection */}
-        <div className="settings-field">
-          <FaPalette className="settings-icon" />
-          <label>Theme:</label>
-          <select name="theme" value={settings.theme} onChange={handleChange}>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-          </select>
         </div>
 
         {/* Notifications Toggle */}

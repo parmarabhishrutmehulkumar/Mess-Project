@@ -5,6 +5,8 @@ import SignIn from './Components/SignIn';
 import Home from './Components/Home';
 import Profile from './Components/Profile'; 
 import Settings from './Components/Settings'; // Import Settings Page
+import Feedback from './Components/Feedback';
+import Complaint from './Components/Complaint';
 //import { ThemeProvider } from './ThemeContext'; // Import ThemeProvider
 
 function App() {
@@ -18,6 +20,9 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/feedback" element={<Feedback />} />
+          <Route path="/complaint" element={<Complaint />} />
+          
         </Routes>
       </Router>
    
