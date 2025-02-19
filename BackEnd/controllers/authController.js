@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const Student = require('../models/students');
 const Faculty = require('../models/faculty');
 const MessStaff = require('../models/messStaff');
-const generateToken = require('../Config/generateToken');
+const generateToken = require('../config/generateToken');
 
 // Signup function for Student, Faculty, and MessStaff
 exports.signup = async (req, res) => {

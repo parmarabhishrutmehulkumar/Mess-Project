@@ -1,18 +1,11 @@
 const express = require('express');
 const { addMenuItem, getMenuItems, updateMenuItem, deleteMenuItem } = require('../controllers/menuController');
-const verifyToken = require('../config/verifyToken');
+const {verifyToken, roleCheck} = require('../config/verifyToken');
 const router = express.Router();
 
-// Add a menu item (only authorized users)
-router.post('/add', verifyToken, addMenuItem);
-
-// Get all menu items
+router.post('/add', verifyToken,roleCheck(["mess-staff"]), addMenuItem);
 router.get('/', getMenuItems);
-
-// Update a menu item (only authorized users)
-router.put('/update/:id', verifyToken, updateMenuItem);
-
-// Delete a menu item (only authorized users)
-router.delete('/delete/:id', verifyToken, deleteMenuItem);
+router.put('/update/:id', verifyToken,roleCheck(["mess-staff"]), updateMenuItem);
+router.delete('/delete/:id', verifyToken,roleCheck(["mess-staff"]), deleteMenuItem);
 
 module.exports = router;

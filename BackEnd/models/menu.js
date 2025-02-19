@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Define the Menu schema
 const menuSchema = new mongoose.Schema({
   dish: { type: String, required: true },
   price: { type: Number, required: true },
@@ -9,8 +8,8 @@ const menuSchema = new mongoose.Schema({
     enum: ['breakfast', 'lunch', 'dinner'], 
     required: true,
   },
-  available: { type: Boolean, default: true }
+  dailyMenu: { type: Boolean, default: false },
+  available: { type: Boolean, default: true },
 });
 
-// Create and export the Menu model
-module.exports = mongoose.model('Menu', menuSchema);
+module.exports = mongoose.model('Menu', menuSchema);
