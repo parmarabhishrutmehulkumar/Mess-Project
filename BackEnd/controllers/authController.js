@@ -1,9 +1,9 @@
-const bcrypt = require('bcrypt');
+
 const Student = require('../models/students');
 const Faculty = require('../models/faculty');
 const MessStaff = require('../models/messStaff');
 const generateToken = require('../config/generateToken');
-
+const bcrypt = require('bcrypt');
 // Signup function for Student, Faculty, and MessStaff
 exports.signup = async (req, res) => {
   const { name, email, password, role, UID } = req.body;
@@ -21,8 +21,9 @@ exports.signup = async (req, res) => {
     return res.status(400).json({ msg: 'User already exists' });
   }
 
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
+  const saltRound = 10
+  const hashedPassword = await bcrypt.hash(password, saltRound);
+  console.log(hashedPassword);
 
   try {
     let newUser;
@@ -35,8 +36,9 @@ exports.signup = async (req, res) => {
     }
 
     await newUser.save();
+    console.log(newUser);
     const token = generateToken(newUser._id, newUser.role);
-    res.status(201).json({ msg: 'Signup successful', token });
+    res.status(201).json({ msg: 'Signup successful',  newUser , token});
 
   } catch (error) {
     res.status(500).json({ msg: 'Error signing up user', error });
