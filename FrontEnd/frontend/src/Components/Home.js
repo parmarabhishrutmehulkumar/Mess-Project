@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"; 
 import Sidebar from "./Sidebar"; // Import Sidebar
 import { FaMoon, FaSun } from "react-icons/fa"; // Import icons for Dark/Light mode
-import "./Home.css"; // Import your Home styles
+import './Home.css'; // Import your Home styles
 
 const Home = () => {
   const [darkMode, setDarkMode] = useState(false);

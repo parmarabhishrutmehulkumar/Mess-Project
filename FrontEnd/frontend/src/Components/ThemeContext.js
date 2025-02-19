@@ -1,7 +1,6 @@
-// ThemeContext.js
 import React, { createContext, useState, useContext, useEffect } from "react";
+import { useMantineColorScheme } from "@mantine/core";
 
-// Create a Context for the dark mode
 const ThemeContext = createContext();
 
 export const useTheme = () => {
@@ -9,13 +8,14 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false);
+  const { colorScheme, setColorScheme } = useMantineColorScheme();
+  const [darkMode, setDarkMode] = useState(colorScheme === "dark");
 
   const toggleDarkMode = () => {
     setDarkMode(prevMode => !prevMode);
+    setColorScheme(darkMode ? "light" : "dark"); // Sync Mantine with our state
   };
 
-  // Apply dark mode to the body element when darkMode state changes
   useEffect(() => {
     if (darkMode) {
       document.body.setAttribute("data-theme", "dark");

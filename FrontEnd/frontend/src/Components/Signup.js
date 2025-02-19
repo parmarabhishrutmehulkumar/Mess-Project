@@ -1,116 +1,94 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook for redirection
-import './Signup.css';  // Optional for styling
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
+ // Import icons
+import "./Signup.css";
 
 const Signup = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        uid: '',
-        password: '',
-        role: 'student', // Default role
-    });
-    const [error, setError] = useState('');
-    const [successMessage, setSuccessMessage] = useState('');
-    const navigate = useNavigate(); // Hook to navigate after successful signup
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    uid: "",
+    password: "",
+    role: "student",
+  });
 
-    // Handle form input
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
+  const [theme, setTheme] = useState("light"); // Dynamic theme
+  const navigate = useNavigate();
 
-    // Handle form submission
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setError('');
-        setSuccessMessage('');
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-        // Example validation
-        if (!formData.name || !formData.email || !formData.uid || !formData.password) {
-            setError('All fields are required!');
-            return;
-        }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccessMessage("");
 
-        // Here you would typically handle the API call
-        // For now, we simulate success:
-        setSuccessMessage('Signup successful!');
+    if (!formData.name || !formData.email || !formData.uid || !formData.password) {
+      setError("All fields are required!");
+      return;
+    }
 
-        // Redirect to the SignIn page after successful signup
-        setTimeout(() => {
-            navigate('/signin'); // Redirect to the SignIn page
-        }, 2000); // Optional delay before redirect (2 seconds)
-    };
+    setSuccessMessage("Signup successful!");
 
-    return (
-        <div className="signup-container">
-            <h2>Sign Up</h2>
-            {error && <div className="error">{error}</div>}
-            {successMessage && <div className="success">{successMessage}</div>}
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Name</label>
-                    <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
+    setTimeout(() => {
+      navigate("/signin");
+    }, 2000);
+  };
 
-                <div>
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
+  return (
+    <div className={`signup-container ${theme}`}>
+      <h2>Sign Up</h2>
 
-                <div>
-                    <label>UID</label>
-                    <input
-                        type="text"
-                        name="uid"
-                        value={formData.uid}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
+      <button className="theme-toggle" onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+        {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+      </button>
 
-                <div>
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
+      {error && <div className="error">{error}</div>}
+      {successMessage && <div className="success">{successMessage}</div>}
 
-                <div>
-                    <label>Role</label>
-                    <select
-                        name="role"
-                        value={formData.role}
-                        onChange={handleChange}
-                    >
-                        <option value="student">Student</option>
-                        <option value="faculty">Faculty</option>
-                    </select>
-                </div>
-
-                <button type="submit">Sign Up</button>
-            </form>
+      <form onSubmit={handleSubmit}>
+        <div className="input-group">
+          <label>Name</label>
+          <input type="text" name="name" value={formData.name} onChange={handleChange} className={error ? "error-input" : ""} required />
         </div>
-    );
+
+        <div className="input-group">
+          <label>Email</label>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+        </div>
+
+        <div className="input-group">
+          <label>UID</label>
+          <input type="text" name="uid" value={formData.uid} onChange={handleChange} required />
+        </div>
+
+        <div className="input-group password-group">
+          <label>Password</label>
+          <input type={showPassword ? "text" : "password"} name="password" value={formData.password} onChange={handleChange} required />
+          <span onClick={() => setShowPassword(!showPassword)}>
+          {showPassword ? <IconEyeOff size={20} /> : <IconEye size={20} />}
+
+          </span>
+        </div>
+
+        <div className="input-group">
+          <label>Role</label>
+          <select name="role" value={formData.role} onChange={handleChange}>
+            <option value="student">Student</option>
+            <option value="faculty">Faculty</option>
+          </select>
+        </div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  );
 };
 
 export default Signup;

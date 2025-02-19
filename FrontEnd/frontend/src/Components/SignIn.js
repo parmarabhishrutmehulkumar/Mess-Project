@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook for redirection
+import './SignIn.css';
 
 const SignIn = () => {
     const [formData, setFormData] = useState({
