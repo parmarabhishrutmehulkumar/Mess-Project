@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
  // Import icons
-import "./Signup.css";
+import "../Styles/Signup.css";
 
 const Signup = () => {
   const [formData, setFormData] = useState({

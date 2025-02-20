@@ -3,7 +3,7 @@ import axios from "axios";
 import { QRCodeCanvas } from "qrcode.react";
 
 import { FaShoppingCart } from "react-icons/fa";
-import "./TicketPurchase.css";
+import "../Styles/TicketPurchase.css";
 
 const TicketPurchase = () => {
   const [ticket, setTicket] = useState({
@@ -34,16 +34,6 @@ const TicketPurchase = () => {
   return (
     <div className="ticket-container">
       <h2>Purchase a Meal Ticket</h2>
-
-      <div className="form-field">
-        <label>Name:</label>
-        <input type="text" name="name" value={ticket.name} onChange={handleChange} required />
-      </div>
-
-      <div className="form-field">
-        <label>Email:</label>
-        <input type="email" name="email" value={ticket.email} onChange={handleChange} required />
-      </div>
 
       <div className="form-field">
         <label>Meal Type:</label>

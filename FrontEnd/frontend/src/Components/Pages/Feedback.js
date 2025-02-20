@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { FaStar, FaPaperPlane, FaArrowLeft } from "react-icons/fa"; // Import back icon
 import { useNavigate } from "react-router-dom"; // Import for navigation
-import "./Feedback.css";
+import "../Styles/Feedback.css";
+
 
 const Feedback = () => {
   const navigate = useNavigate(); // Hook for navigation

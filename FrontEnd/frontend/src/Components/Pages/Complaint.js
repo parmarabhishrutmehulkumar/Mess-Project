@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaPaperPlane } from "react-icons/fa"; // Icons for complaints
-import "./Complaint.css"; // Add your own CSS styling
+import "../Styles/Complaint.css";
+ // Add your own CSS styling
 
 const Complaint = () => {
   const [complaint, setComplaint] = useState({

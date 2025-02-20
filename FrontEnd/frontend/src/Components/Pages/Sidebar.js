@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaUser, FaCog, FaCommentDots, FaExclamationTriangle } from "react-icons/fa";
-import "./Sidebar.css"; // Sidebar styling
+import "../Styles/Sidebar.css"; // Sidebar styling
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
