@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react"; 
 import Sidebar from "./Sidebar"; // Import Sidebar
 import { FaMoon, FaSun } from "react-icons/fa"; // Import icons for Dark/Light mode
-import './Home.css'; // Import your Home styles
+import "./Home.css"; // Import your Home styles
+import TicketPurchase from "./TicketPurchase";
 
 const Home = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -20,13 +21,13 @@ const Home = () => {
   // Set Today's Menu Based on the Current Day
   const getDayMenu = () => {
     const weeklyMenu = {
-      Monday: { breakfast: "Pancakes", lunch: "Grilled Chicken Salad", dinner: "Spaghetti" },
-      Tuesday: { breakfast: "Omelette", lunch: "Veggie Burger", dinner: "Chicken Curry" },
-      Wednesday: { breakfast: "Smoothie Bowl", lunch: "Turkey Sandwich", dinner: "Grilled Fish" },
-      Thursday: { breakfast: "Avocado Toast", lunch: "Caesar Salad", dinner: "Beef Stew" },
-      Friday: { breakfast: "French Toast", lunch: "Chicken Wrap", dinner: "Pizza" },
-      Saturday: { breakfast: "Bagels", lunch: "Pasta", dinner: "BBQ Ribs" },
-      Sunday: { breakfast: "Eggs Benedict", lunch: "Steak and Fries", dinner: "Sushi" },
+      Monday: { breakfast: "Pancakes", lunch: " Panner Masala", dinner: "Spaghetti" },
+      Tuesday: { breakfast: "Omelette", lunch: "Veggie Burger", dinner: "Masala Curry" },
+      Wednesday: { breakfast: "Smoothie Bowl", lunch: "Club Sandwich", dinner: "Pav Bhaji" },
+      Thursday: { breakfast: "Avocado Toast", lunch: "Caesar Salad", dinner: "Veg Pulav" },
+      Friday: { breakfast: "French Toast", lunch: "Chinese Wrap", dinner: "Pizza" },
+      Saturday: { breakfast: "Dosa", lunch: "Pasta", dinner: "BBQ" },
+      Sunday: { breakfast: "Samosa", lunch: "French Fries", dinner: "Sushi" },
     };
 
     const currentDay = new Date().toLocaleString("en-us", { weekday: "long" });
@@ -90,23 +91,35 @@ const Home = () => {
           </div>
         </div>
       </main>
-
+     <TicketPurchase/>
       {/* Button to View Week's Menu */}
       <button className="view-menu-button" onClick={toggleMenu}>
         View Week's Menu
       </button>
 
-      {/* Week's Menu Section */}
+      {/* Week's Menu Section (Table Format) */}
       {isMenuVisible && (
         <div className="week-menu-section">
           <h3>Week's Menu</h3>
-          <div className="week-menu-item">Monday: Pancakes, Grilled Chicken Salad, Spaghetti</div>
-          <div className="week-menu-item">Tuesday: Omelette, Veggie Burger, Chicken Curry</div>
-          <div className="week-menu-item">Wednesday: Smoothie Bowl, Turkey Sandwich, Grilled Fish</div>
-          <div className="week-menu-item">Thursday: Avocado Toast, Caesar Salad, Beef Stew</div>
-          <div className="week-menu-item">Friday: French Toast, Chicken Wrap, Pizza</div>
-          <div className="week-menu-item">Saturday: Bagels, Pasta, BBQ Ribs</div>
-          <div className="week-menu-item">Sunday: Eggs Benedict, Steak and Fries, Sushi</div>
+          <table className="week-menu-table">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Breakfast</th>
+                <th>Lunch</th>
+                <th>Dinner</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Monday</td><td>Pancakes</td><td>Grilled Salad</td><td>Spaghetti</td></tr>
+              <tr><td>Tuesday</td><td>Omelette</td><td>Veggie Burger</td><td> Curry</td></tr>
+              <tr><td>Wednesday</td><td>Smoothie Bowl</td><td>Turkey Sandwich</td><td>Grilled Fish</td></tr>
+              <tr><td>Thursday</td><td>Avocado Toast</td><td>Caesar Salad</td><td>Masala Paneer</td></tr>
+              <tr><td>Friday</td><td>French Toast</td><td>Wrap</td><td>Pizza</td></tr>
+              <tr><td>Saturday</td><td>Samosa</td><td>Pasta</td><td>BBQ</td></tr>
+              <tr><td>Sunday</td><td>Benedict</td><td>French Fries</td><td>Sushi</td></tr>
+            </tbody>
+          </table>
         </div>
       )}
     </div>

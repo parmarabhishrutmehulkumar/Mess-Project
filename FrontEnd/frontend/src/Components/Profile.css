@@ -1,0 +1,79 @@
+.profile-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.profile-container h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.profile-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.profile-container label {
+    font-weight: 600;
+    color: #555;
+    text-align: left;
+}
+
+.profile-container input,
+.profile-container select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.profile-container input:focus,
+.profile-container select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.profile-container input[type="file"] {
+    border: none;
+    padding: 5px;
+}
+
+.profile-container img {
+    margin-top: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #007bff;
+}
+
+.profile-container button {
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.profile-container button:hover {
+    background: #0056b3;
+}
+
+@media (max-width: 600px) {
+    .profile-container {
+        max-width: 90%;
+        padding: 15px;
+    }
+}

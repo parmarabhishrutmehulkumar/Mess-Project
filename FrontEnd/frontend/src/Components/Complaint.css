@@ -1,41 +1,91 @@
-/* Button to View Menu */
-.view-menu-button {
-    background: #2980b9;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 8px;
-    display: inline-block;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .view-menu-button:hover {
-    background: #3498db;
-  }
-  
-  /* Week Menu Section */
-  .week-menu-section {
-    display: block;
-    background: #ecf0f1;
-    padding: 30px;
-    border-radius: 15px;
-    width: 80%;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
-  }
-  
-  body[data-theme='dark'] .week-menu-section {
-    background: #2c3e50;
-  }
-  
-  .week-menu-item {
-    font-size: 18px;
-    padding: 10px 0;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 10px;
-  }
-  
+/* Complaint Page Container */
+.complaint-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Home Button */
+.home-button {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.home-button:hover {
+  color: #007bff;
+}
+
+/* Form Styling */
+.complaint-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Form Field */
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.form-field label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Input and Select */
+.form-field input,
+.form-field select,
+.form-field textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Textarea */
+.form-field textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Submit Button */
+.submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
