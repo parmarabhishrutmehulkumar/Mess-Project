@@ -1,5 +1,5 @@
 /* Container for the entire page */
-.signup-container {
+.signin-container {
     width: 100%;
     max-width: 500px;
     margin: 50px auto;
@@ -11,25 +11,17 @@
 }
 
 /* Title of the page */
-.signup-container h2 {
+.signin-container h2 {
     text-align: center;
     font-size: 2rem;
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Style for error and success messages */
+/* Style for error messages */
 .error {
     color: #ff0000;
     background-color: #ffe6e6;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-
-.success {
-    color: #006400;
-    background-color: #e6ffcc;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 15px;
@@ -47,8 +39,7 @@ label {
     color: #555;
 }
 
-input,
-select {
+input {
     width: 100%;
     padding: 10px;
     font-size: 1rem;
@@ -58,8 +49,7 @@ select {
     transition: border-color 0.3s;
 }
 
-input:focus,
-select:focus {
+input:focus {
     border-color: #007bff;
 }
 
@@ -80,14 +70,31 @@ button:hover {
     background-color: #0056b3;
 }
 
+/* Sign-up link */
+p {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
 /* Responsive design */
 @media (max-width: 600px) {
-    .signup-container {
+    .signin-container {
         margin: 20px;
         padding: 15px;
     }
 
-    .signup-container h2 {
+    .signin-container h2 {
         font-size: 1.6rem;
     }
 

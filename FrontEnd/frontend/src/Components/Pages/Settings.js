@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar"; // Import Sidebar
 import { FaUser, FaEnvelope, FaLock, FaBell } from "react-icons/fa";
-import "./Settings.css"; // Import CSS for styling
+import "../Styles/Settings.css"; // Import CSS for styling
 
 const Settings = () => {
   const [settings, setSettings] = useState({
