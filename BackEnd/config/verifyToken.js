@@ -1,25 +1,31 @@
 const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization;
-  if (!token) return res.status(401).json({ message: "Access Denied" });
+    const token = req.headers.authorization?.split(" ")[1]; 
 
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (error) {
-    res.status(400).json({ message: "Invalid Token" });
-  }
-};
+    if (!token) return res.status(401).json({ message: "Token missing" });
 
-const roleCheck = (roles) => {
-  return (req, res, next) => {
-    if (!roles.includes(req.user.role)) {
-      return res.status(403).json({ message: "Access Denied" });
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET); 
+        req.user = decoded;  
+
+        next();
+    } catch (error) {
+        return res.status(400).json({ message: "Invalid Token" });
     }
-    next();
-  };
 };
 
-module.exports = { verifyToken, roleCheck };
+
+const isFaculty = (req, res, next) => {
+  ;
+  if(req.user.role === "faculty") next();
+  else res.status(401).json({ message: "Access Denied" });
+};
+
+const isMessStaff = (req, res, next) => {
+  ;
+  if(req.user.role === "mess-staff") next();
+  else res.status(401).json({ message: "Access Denied" });
+};
+
+module.exports = { verifyToken, isFaculty , isMessStaff};
