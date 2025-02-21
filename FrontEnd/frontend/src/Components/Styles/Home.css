@@ -45,6 +45,10 @@ body {
 .dark-mode-toggle:hover {
     transform: scale(1.1);
 }
+.dark-mode-toggle {
+    background: black;
+    color: yellow;
+  }
 
 /* Welcome Cards */
 .welcome-cards {

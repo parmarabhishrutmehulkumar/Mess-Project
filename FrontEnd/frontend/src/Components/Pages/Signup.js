@@ -16,7 +16,7 @@ const Signup = () => {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
-  const [theme, setTheme] = useState("light"); // Dynamic theme
+ // const [theme, setTheme] = useState("light"); // Dynamic theme
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -38,16 +38,14 @@ const Signup = () => {
 
     setTimeout(() => {
       navigate("/signin");
-    }, 2000);
+    },);
   };
 
   return (
-    <div className={`signup-container ${theme}`}>
+    <div className={"signup-container dark"}>
       <h2>Sign Up</h2>
 
-      <button className="theme-toggle" onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
-        {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
-      </button>
+
 
       {error && <div className="error">{error}</div>}
       {successMessage && <div className="success">{successMessage}</div>}

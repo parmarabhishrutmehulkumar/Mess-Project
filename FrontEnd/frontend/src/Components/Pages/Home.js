@@ -14,9 +14,15 @@ const Home = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false); // Controls visibility of the week's menu
 
   // Toggle dark mode function
-  const toggleDarkMode = () => {
-    setDarkMode((prevMode) => !prevMode);
-  };
+ // const [darkMode, setDarkMode] = useState(false);
+
+const toggleDarkMode = () => {
+  setDarkMode((prevMode) => {
+    console.log("Dark mode toggled to:", !prevMode); // Debugging
+    return !prevMode;
+  });
+};
+
 
   // Set Today's Menu Based on the Current Day
   const getDayMenu = () => {
@@ -54,8 +60,9 @@ const Home = () => {
 
       {/* Dark Mode Switch with Icon */}
       <div onClick={toggleDarkMode} className="dark-mode-toggle">
-        {darkMode ? <FaSun size={24} /> : <FaMoon size={24} />}
-      </div>
+  {darkMode ? <FaSun key="sun" size={24} /> : <FaMoon key="moon" size={24} />}
+</div>
+
 
       {/* Main Content */}
       <main className="main-content">
