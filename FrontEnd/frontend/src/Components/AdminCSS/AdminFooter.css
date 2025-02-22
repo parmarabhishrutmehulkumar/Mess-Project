@@ -1,0 +1,39 @@
+.admin-footer {
+    background: linear-gradient(to right, #2c3e50, #34495e); /* Modern gradient */
+    color: #ecf0f1; /* Light grey text for readability */
+    text-align: center;
+    padding: 15px 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2); /* Soft shadow effect */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .admin-footer p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .admin-footer .footer-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .admin-footer a {
+    color: #1abc9c; /* Vibrant highlight color */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    font-size: 14px;
+  }
+  
+  .admin-footer a:hover {
+    color: #f39c12; /* Nice hover effect */
+    text-decoration: underline;
+  }
+  

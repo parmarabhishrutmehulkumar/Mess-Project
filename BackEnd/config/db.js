@@ -1,20 +1,15 @@
 const mongoose = require("mongoose");
+require("dotenv").config(); // Ensure .env is loaded
 
-const dotenv = require("dotenv");
-
-dotenv.config();
 const connectDatabase = () => {
-
+    console.log("MongoDB URI:", process.env.MONGODB); // Debugging
     mongoose
-        .connect(process.env.MONGODB)
-        .then((con) => {
-            console.log(`Database connected`);
-        })
+        .connect("mongodb+srv://parmarabhishrut:J0lAkob9qFZWQjMs@mess.4tnci.mongodb.net/Mess?retryWrites=true&w=majority&appName=mess")
+        .then(() => console.log("Database connected"))
         .catch((err) => {
-            console.log(err);
-            process.exit(1)
-        })
+            console.log("Database connection error:", err);
+            process.exit(1);
+        });
+};
 
-}
-
-module.exports = connectDatabase();
+module.exports = connectDatabase;

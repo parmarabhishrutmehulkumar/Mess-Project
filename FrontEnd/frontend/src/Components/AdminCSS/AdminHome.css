@@ -1,0 +1,46 @@
+.admin-container {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-title {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.admin-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-link {
+  display: block;
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.admin-link:hover {
+  background: #0056b3;
+}
