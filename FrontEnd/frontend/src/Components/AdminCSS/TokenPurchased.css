@@ -1,0 +1,60 @@
+/* TokenPurchased.css */
+.token-stats-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .token-stats-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .token-stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .token-stats-table th, 
+  .token-stats-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .token-stats-table th {
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+  }
+  
+  .token-stats-table tbody tr:nth-child(even) {
+    background: #f2f2f2;
+  }
+  
+  .token-stats-table tbody tr:hover {
+    background: #d1e7ff;
+    transition: 0.3s;
+  }
+  
+  @media (max-width: 768px) {
+    .token-stats-container {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .token-stats-table th, 
+    .token-stats-table td {
+      padding: 8px;
+      font-size: 14px;
+    }
+  }
+  

@@ -16,7 +16,12 @@ import AdminSignup from './Components/Admin/AdminSignup';
 import AdminSignin from './Components/Admin/AdminSignin';
 import AdminHome from './Components/Admin/AdminHome';
 import ManageUsers from './Components/Admin/ManageUsers';
-import ManageOrders from './Components/Admin/ManageOrders';
+//import Complaints from './Components/Admin/Complaints';
+import ManageMenu from './Components/Admin/ManageMenu';
+import TokenPurchased from './Components/Admin/TokenPurchased';
+import Attendance from './Components/Admin/Attendance';
+import Complaints from './Components/Admin/Complaints';
+
 
 function App() {
   const [darkMode, setDarkMode] = useState(
@@ -48,7 +53,11 @@ function App() {
           <Route path="/admin/signin" element={<AdminSignin />} />
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/manage-users" element={<ManageUsers />} />
-          <Route path="/admin/manage-orders" element={<ManageOrders />} />
+          <Route path="/admin/complaints" element={<Complaints />} />
+          <Route path="/admin/manage-menu" element={<ManageMenu />} />
+          <Route path="/admin/token-purchased" element={<TokenPurchased />} />
+          <Route path="/admin/attendance" element={<Attendance />} />
+
         </Routes>
       </Router>
     </div>

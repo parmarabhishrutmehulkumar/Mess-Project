@@ -1,0 +1,56 @@
+/* ManageMenu Component CSS */
+.menu-container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .menu-table th,
+  .menu-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .menu-table th {
+    background: #007bff;
+    color: white;
+  }
+  
+  .add-menu-item {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .add-menu-item input,
+  .add-menu-item select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .add-menu-item button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .add-menu-item button:hover {
+    background: #218838;
+  }
+  
