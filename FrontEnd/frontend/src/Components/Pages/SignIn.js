@@ -39,38 +39,43 @@ const SignIn = () => {
 
     return (
         <div className="signin-container">
-            <h2>Sign In</h2>
-            {error && <div className="error">{error}</div>}
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <div>
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <button type="submit">Sign In</button>
-            </form>
-            <p>
-                Don't have an account? <a href="/signup">Sign Up</a>
-            </p>
+            <div className="signin-box">
+                <h2>Sign In</h2>
+                {error && <div className="error">{error}</div>}
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+    
+                    <div>
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+    
+                    <button type="submit">Sign In</button>
+                </form>
+                
+                {/* Move the SignUp link OUTSIDE the form but inside signin-box */}
+                <p>
+                    Don't have an account? <a href="/signup">Sign Up</a>
+                </p>
+            </div>
         </div>
     );
+    
 };
 
 export default SignIn;
