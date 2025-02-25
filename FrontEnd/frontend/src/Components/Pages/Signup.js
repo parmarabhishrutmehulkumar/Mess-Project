@@ -48,6 +48,10 @@ const Signup = () => {
     if (data) {
       navigate("/signin"); // Redirect to sign-in page after successful signup
     }
+    setTimeout(() => {
+      navigate("/signin");
+    }, 2000); // Added the missing timeout value (2 seconds)
+
   };
 
   return (

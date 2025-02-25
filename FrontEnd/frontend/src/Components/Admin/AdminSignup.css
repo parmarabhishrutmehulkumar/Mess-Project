@@ -1,0 +1,175 @@
+/* AdminSignup.css */
+.admin-signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--light-color);
+    padding: 20px;
+  }
+  
+  .admin-signup-content {
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .admin-title {
+    color: var(--dark-color);
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    text-align: center;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 15px;
+  }
+  
+  .admin-card {
+    margin-bottom: 20px;
+  }
+  
+  .admin-field {
+    display: flex;
+    margin-bottom: 20px;
+    position: relative;
+    transition: var(--transition);
+  }
+  
+  .admin-field.error input {
+    border-color: #f44336;
+  }
+  
+  .field-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    padding-right: 15px;
+  }
+  
+  .admin-icon {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+  }
+  
+  .field-input {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .field-input label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: var(--text-color);
+  }
+  
+  input {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    width: 100%;
+    transition: var(--transition);
+  }
+  
+  input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 173, 216, 0.2);
+    outline: none;
+  }
+  
+  .error-message {
+    color: #f44336;
+    font-size: 0.8rem;
+    margin-top: 5px;
+  }
+  
+  .signup-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .button-icon {
+    margin-left: 8px;
+  }
+  
+  .signup-button:hover {
+    background-color: #0090c5;
+    transform: translateY(-2px);
+  }
+  
+  .signup-button:active {
+    transform: translateY(0);
+  }
+  
+  .signup-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .auth-link {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.95rem;
+  }
+  
+  .auth-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  
+  .auth-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .admin-signup-content {
+      padding: 20px;
+    }
+    
+    .admin-field {
+      flex-direction: column;
+    }
+    
+    .field-icon {
+      padding-right: 0;
+      padding-bottom: 10px;
+    }
+    
+    .admin-title {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .admin-signup-content {
+      padding: 15px;
+    }
+    
+    input {
+      padding: 10px;
+    }
+    
+    .signup-button {
+      padding: 10px 15px;
+    }
+  }
