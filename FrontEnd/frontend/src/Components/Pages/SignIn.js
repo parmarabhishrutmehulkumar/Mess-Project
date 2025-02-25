@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook for redirection
+import { useNavigate } from 'react-router-dom';
+import { IconEye, IconEyeOff } from "@tabler/icons-react"; // Import icons for password visibility
 import '../Styles/SignIn.css';
 
 const SignIn = () => {
@@ -8,9 +9,9 @@ const SignIn = () => {
         password: '',
     });
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // Hook to navigate after successful signup
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
-    // Handle form input
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -19,55 +20,75 @@ const SignIn = () => {
         });
     };
 
-    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
         setError('');
 
-        // Example validation
         if (!formData.email || !formData.password) {
             setError('All fields are required!');
             return;
         }
 
-        // Here, you would typically authenticate the user with an API call
-        // Simulating success for now:
-        // Redirect to home page after successful login
         console.log('SignIn successful');
-        navigate('/home'); // Redirect to home or dashboard
+        navigate('/home');
     };
 
     return (
-        <div className="signin-container">
-            <h2>Sign In</h2>
-            {error && <div className="error">{error}</div>}
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
+        <div className="signin-wrapper">
+            <div className="signin-container">
+                <h2>Welcome Back</h2>
+                
+                {error && <div className="message error">{error}</div>}
+                
+                <form onSubmit={handleSubmit}>
+                    <div className="input-group">
+                        <label htmlFor="email">Email Address</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Enter your email"
+                            className={error && !formData.email ? "error-input" : ""}
+                            required
+                        />
+                    </div>
+        
+                    <div className="input-group password-group">
+                        <label htmlFor="password">Password</label>
+                        <div className="password-input-container">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                id="password"
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                placeholder="Enter your password"
+                                className={error && !formData.password ? "error-input" : ""}
+                                required
+                            />
+                            <button 
+                                type="button" 
+                                className="toggle-password" 
+                                onClick={() => setShowPassword(!showPassword)}
+                                aria-label={showPassword ? "Hide password" : "Show password"}
+                            >
+                                {showPassword ? <IconEyeOff size={20} /> : <IconEye size={20} />}
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div className="forgot-password">
+                        <a href="/forgot-password">Forgot password?</a>
+                    </div>
+        
+                    <button type="submit" className="submit-btn">Sign In</button>
+                </form>
+                
+                <div className="signup-link">
+                    Don't have an account? <a href="/signup">Sign Up</a>
                 </div>
-
-                <div>
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <button type="submit">Sign In</button>
-            </form>
-            <div className={"signin-container dark"}>
-                Don't have an account? <a href="/signup">Sign Up</a>
             </div>
         </div>
     );

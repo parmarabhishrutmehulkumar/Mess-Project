@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
- // Import icons
 import "../Styles/Signup.css";
 
 const Signup = () => {
@@ -15,8 +14,7 @@ const Signup = () => {
 
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
- // const [theme, setTheme] = useState("light"); // Dynamic theme
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -38,53 +36,104 @@ const Signup = () => {
 
     setTimeout(() => {
       navigate("/signin");
-    },);
+    }, 2000); // Added the missing timeout value (2 seconds)
   };
 
   return (
-    <div className={"signup-container dark"}>
-      <h2>Sign Up</h2>
+    <div className="signup-wrapper">
+      <div className="signup-container">
+        <h2>Create Account</h2>
+        
+        {error && <div className="message error">{error}</div>}
+        {successMessage && <div className="message success">{successMessage}</div>}
 
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="name">Full Name</label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              value={formData.name} 
+              onChange={handleChange} 
+              className={error && !formData.name ? "error-input" : ""} 
+              placeholder="Enter your full name"
+              required 
+            />
+          </div>
 
+          <div className="input-group">
+            <label htmlFor="email">Email Address</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              value={formData.email} 
+              onChange={handleChange} 
+              className={error && !formData.email ? "error-input" : ""} 
+              placeholder="Enter your email"
+              required 
+            />
+          </div>
 
-      {error && <div className="error">{error}</div>}
-      {successMessage && <div className="success">{successMessage}</div>}
+          <div className="input-group">
+            <label htmlFor="uid">UID</label>
+            <input 
+              type="text" 
+              id="uid" 
+              name="uid" 
+              value={formData.uid} 
+              onChange={handleChange} 
+              className={error && !formData.uid ? "error-input" : ""} 
+              placeholder="Enter your UID"
+              required 
+            />
+          </div>
 
-      <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <label>Name</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} className={error ? "error-input" : ""} required />
-        </div>
+          <div className="input-group password-group">
+            <label htmlFor="password">Password</label>
+            <div className="password-input-container">
+              <input 
+                type={showPassword ? "text" : "password"} 
+                id="password" 
+                name="password" 
+                value={formData.password} 
+                onChange={handleChange} 
+                className={error && !formData.password ? "error-input" : ""} 
+                placeholder="Create a strong password"
+                required 
+              />
+              <button 
+                type="button" 
+                className="toggle-password" 
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <IconEyeOff size={20} /> : <IconEye size={20} />}
+              </button>
+            </div>
+          </div>
 
-        <div className="input-group">
-          <label>Email</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-        </div>
+          <div className="input-group">
+            <label htmlFor="role">Role</label>
+            <select 
+              id="role" 
+              name="role" 
+              value={formData.role} 
+              onChange={handleChange}
+            >
+              <option value="student">Student</option>
+              <option value="faculty">Faculty</option>
+            </select>
+          </div>
 
-        <div className="input-group">
-          <label>UID</label>
-          <input type="text" name="uid" value={formData.uid} onChange={handleChange} required />
-        </div>
-
-        <div className="input-group password-group">
-          <label>Password</label>
-          <input type={showPassword ? "text" : "password"} name="password" value={formData.password} onChange={handleChange} required />
-          <span onClick={() => setShowPassword(!showPassword)}>
-          {showPassword ? <IconEyeOff size={20} /> : <IconEye size={20} />}
-
-          </span>
-        </div>
-
-        <div className="input-group">
-          <label>Role</label>
-          <select name="role" value={formData.role} onChange={handleChange}>
-            <option value="student">Student</option>
-            <option value="faculty">Faculty</option>
-          </select>
-        </div>
-
-        <button type="submit">Sign Up</button>
-      </form>
+          <button type="submit" className="submit-btn">Sign Up</button>
+          
+          <div className="signin-link">
+            Already have an account? <a href="/signin">Sign In</a>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
