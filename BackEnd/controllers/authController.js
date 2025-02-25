@@ -15,13 +15,11 @@ exports.signup = async (req, res) => {
       user = await new Student({ name, email, password: hashedpassword, role, UID }).save();
     } else if (role === "faculty") {
       user = await new Faculty({ name, email, password: hashedpassword, role, UID }).save();
-    } else if (role === "mess-staff") {
-      user = await new MessStaff({ name, email, password: hashedpassword, role }).save();
-    }
+    } 
 
     await user.save();
     const token = generateToken(user._id, role);
-
+    
     res.status(200).json({ msg: "Signup successful", user , token});
   } catch (error) {
     res.status(500).json({ msg: "Error signing up", error });
@@ -37,8 +35,6 @@ exports.signin = async (req, res) => {
     user = await Student.findOne({ email });
   } else if (role === "faculty") {
     user = await Faculty.findOne({ email });
-  } else if (role === "mess-staff") {
-    user = await MessStaff.findOne({ email });
   }
 
   if (!user) {

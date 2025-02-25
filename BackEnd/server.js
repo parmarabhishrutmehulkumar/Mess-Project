@@ -1,23 +1,25 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const connectDatabase = require('./config/db');  // Fix: Corrected function name
 const authRoutes = require("./Routes/authRoutes");
 const menuRoutes = require('./routes/menuRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const StaffRoutes = require('./routes/staffRoutes');
 const actualmenuRoutes = require('./routes/actualmenuRoutes');
 
 dotenv.config();  
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
-// ✅ Call the database connection function before starting the server
 connectDatabase();
 
-// ✅ Define API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/menu', menuRoutes);
 app.use("/api/actualmenu", actualmenuRoutes);
+app.use("/api/staff",StaffRoutes); 
 app.use("/api/order", orderRoutes);  
 
 const PORT = process.env.PORT || 5000;

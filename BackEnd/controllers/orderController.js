@@ -8,14 +8,16 @@ const QRCode = require('qrcode');
 const placeOrder = async (req, res) => {
     try {
         const { facultyName, items } = req.body;
-        const staffEmail = 'mess-staff@gmail.com'; // Replace with the actual staff email
+        
 
         const faculty = await Faculty.findOne({ name: facultyName });
+
+        
         if (!faculty) return res.status(404).json({ msg: "Faculty not found" });
 
         const orderedItems = await Promise.all(
             items.map(async (item) => {
-                const menuItem = await FullMenu.findOne({ name: item.name });
+                const menuItem = await FullMenu.findOne({ dish: item.dish });
                 if (!menuItem) throw new Error(`Menu item '${item.name}' not found`);
                 return {
                     menuItem: menuItem._id,
@@ -47,7 +49,7 @@ const placeOrder = async (req, res) => {
         await order.save();
 
         // Send email to mess staff
-        await sendOrderEmail(staffEmail, {
+        await sendOrderEmail( {
             facultyName: faculty.name,
             facultyEmail: faculty.email,
             tokenId,
