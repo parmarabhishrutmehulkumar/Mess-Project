@@ -22,7 +22,7 @@ exports.signup = async (req, res) => {
     await user.save();
     const token = generateToken(user._id, role);
 
-    res.status(200).json({ msg: "Signup successful", user , token});
+    return res.status(200).json({ msg: "Signup successful", user , token});
   } catch (error) {
     res.status(500).json({ msg: "Error signing up", error });
   }

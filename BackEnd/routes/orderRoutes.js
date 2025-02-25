@@ -6,7 +6,7 @@ const {verifyToken,isFaculty} = require('../config/verifyToken');
 const router = express.Router();
 
 router.post('/place',verifyToken,(req,res,next)=>{
-
+        console.log(req.user);
     if(req.user.role === "faculty") next();
     else res.status(401).json({ message: "Access Denied" });
 }, placeOrder);

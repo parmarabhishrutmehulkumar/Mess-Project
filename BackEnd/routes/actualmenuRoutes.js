@@ -1,12 +1,26 @@
-const express = require('express');
-const {actualMenuController, getMenuItems} = require('../controllers/actualMenuController');
+const express = require("express");
+const {
+  actualMenuController,
+  getMenuItems,
+} = require("../controllers/actualMenuController");
+const { verifyToken } = require("../config/verifyToken");
 const router = express.Router();
 
-router.post("/add",(req,res,next)=>{
-    if(req.user.role === "mess-staff") next();
-    else res.status(401).json({ message: "Access Denied" });
-}, actualMenuController)
+router.post(
+  "/add",verifyToken,
+  (req, res, next) => {
+    if (!req.user) {
+      console.log(req.user);
+      return res.status(401).json({ message: "Unauthorized: User not found" });
+    }
+    const role = req.user.role; // Now safe to access
 
-router.get("/",getMenuItems)
+    if (req.user.role === "mess-staff") next();
+    else res.status(200).json({ message: "Accessed" });
+  },
+  actualMenuController
+);
 
-module.exports = router
+router.get("/", getMenuItems);
+
+module.exports = router;
