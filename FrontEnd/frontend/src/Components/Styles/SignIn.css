@@ -1,104 +1,258 @@
-/* Background styling */
-.signin-container {
+:root {
+    --primary-color: #00add8;
+    --secondary-color: #ff6b35;
+    --accent-color: #4ecdc4;
+    --dark-color: #333;
+    --light-color: #f4f4f4;
+    --text-color: #333;
+    --text-light: #666;
+    --text-dark: #222;
+    --white: #fff;
+    --black: #000;
+    --border-color: #ddd;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --border-radius: 8px;
+    --header-height: 70px;
+  }
+  
+  /* Global Styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .signin-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    background-color: var(--light-color);
+  }
+  
+  .signin-container {
     width: 100%;
-    height: 100vh;
-    
+    max-width: 450px;
+    padding: 2.5rem;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+  }
+  
+  /* Typography */
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  
+  /* Form Elements */
+  .input-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+    color: var(--text-color);
+    transition: var(--transition);
+  }
+  
+  input::placeholder {
+    color: var(--text-light);
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 173, 216, 0.2);
+  }
+  
+  .error-input {
+    border-color: var(--secondary-color) !important;
+  }
+  
+  /* Password Field */
+  .password-group {
+    position: relative;
+  }
+  
+  .password-input-container {
+    position: relative;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-/* Sign-in box */
-.signin-box {
-    width: 380px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    backdrop-filter: blur(10px);
-}
-
-/* Heading */
-.signin-box h2 {
-    color: #333;
-    font-size: 26px;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-/* Input fields */
-.signin-box input {
-    width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    outline: none;
-    transition: 0.3s;
-}
-
-.signin-box input:focus {
-    border-color: #ff4141;
-    box-shadow: 0 0 5px rgba(255, 65, 65, 0.5);
-}
-
-/* Sign-in button */
-.signin-box button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-    border: none;
-    border-radius: 8px;
-    background: #ff4141;
-    color: white;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.signin-box button:hover {
-    background: #e63939;
-}
-
-/* Error message */
-.error {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-/* Sign-up link */
-.signin-box p {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #333;
-}
-
-.signin-box p a {
-    color: #ff4141;
-    font-weight: bold;
+  }
+  
+  .toggle-password:hover {
+    color: var(--primary-color);
+  }
+  
+  /* Forgot Password Link */
+  .forgot-password {
+    text-align: right;
+    margin-bottom: 1.5rem;
+  }
+  
+  .forgot-password a {
+    color: var(--text-light);
     text-decoration: none;
-}
-
-.signin-box p a:hover {
+    font-size: 0.9rem;
+    transition: var(--transition);
+  }
+  
+  .forgot-password a:hover {
+    color: var(--primary-color);
     text-decoration: underline;
-}
-/* Responsive design 
-@media (max-width: 600px) {
+  }
+  
+  /* Submit Button */
+  .submit-btn {
+    width: 100%;
+    padding: 0.875rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 0.5rem;
+  }
+  
+  .submit-btn:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  /* Error Messages */
+  .message {
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  
+  .error {
+    background-color: rgba(255, 107, 53, 0.1);
+    color: var(--secondary-color);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+  }
+  
+  /* Sign Up Link */
+  .signup-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-light);
+  }
+  
+  .signup-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  
+  .signup-link a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
     .signin-container {
-        margin: 20px;
-        padding: 15px;
+      padding: 2rem;
     }
-
-    .signin-container h2 {
-        font-size: 1.6rem;
+    
+    h2 {
+      font-size: 1.75rem;
     }
-
-    button {
-        font-size: 1rem;
+  }
+  
+  @media (max-width: 480px) {
+    .signin-wrapper {
+      padding: 1rem 0.5rem;
     }
-}
-*/
+    
+    .signin-container {
+      padding: 1.5rem;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    
+    input {
+      padding: 0.7rem 0.875rem;
+    }
+    
+    .submit-btn {
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+    
+    .message {
+      padding: 0.625rem 0.75rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Dark Mode Support */
+  @media (prefers-color-scheme: dark) {
+    .signin-wrapper {
+      background-color: var(--dark-color);
+    }
+    
+    .signin-container {
+      background-color: #222;
+    }
+    
+    h2, label {
+      color: var(--white);
+    }
+    
+    input {
+      background-color: #333;
+      border-color: #444;
+      color: var(--white);
+    }
+    
+    input::placeholder {
+      color: #888;
+    }
+    
+    .forgot-password a,
+    .signup-link {
+      color: #aaa;
+    }
+  }

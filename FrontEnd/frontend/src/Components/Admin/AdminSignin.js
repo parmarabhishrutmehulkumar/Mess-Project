@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import "./AdminSignin.css";
+
 const AdminSignIn = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const navigate = useNavigate();
