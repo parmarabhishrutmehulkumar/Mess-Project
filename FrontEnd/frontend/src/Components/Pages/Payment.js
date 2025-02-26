@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import {QRCodeCanvas} from "qrcode.react";
 import "../Styles/Payment.css";
+// import faculty from "../../../../../BackEnd/models/faculty";
 const Payment = () => {
   const [ticket, setTicket] = useState({
     name: "",
@@ -13,6 +14,9 @@ const Payment = () => {
 
   const [qrData, setQrData] = useState(null);
 
+
+  const UserInfo = localStorage.getItem("user");
+  const user = JSON.parse(UserInfo);
   const handleChange = (e) => {
     setTicket({ ...ticket, [e.target.name]: e.target.value });
   };
@@ -55,11 +59,14 @@ const Payment = () => {
         name: "Meal Ticket",
         description: "Lunch Ticket Purchase",
         order_id: data.orderId,
+
         handler: async (response) => {
           const verifyRes = await axios.post("http://localhost:5000/api/order/payment/verify", {
             orderId: response.razorpay_order_id,
             paymentId: response.razorpay_payment_id,
             signature: response.razorpay_signature,
+            facultyId: user._id,
+            facultyName: user.name,
             ticketDetails: { ...ticket, amount: ticket.amount * ticket.quantity },
           });
 

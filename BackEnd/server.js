@@ -6,6 +6,7 @@ const authRoutes = require("./Routes/authRoutes");
 const menuRoutes = require('./routes/menuRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const StaffRoutes = require('./routes/staffRoutes');
+const PurchaseRoutes = require('./routes/purchaseRoutes');
 const AttendenceRoutes = require('./routes/AttendenceRoutes');
 const actualmenuRoutes = require('./routes/actualmenuRoutes');
 
@@ -21,14 +22,12 @@ connectDatabase();
 app.use('/api/auth', authRoutes);
 app.use('/api/menu', menuRoutes);
 app.use("/api/actualmenu", actualmenuRoutes);
-<<<<<<< HEAD
+
 app.use("/api/staff",StaffRoutes); 
 app.use("/api/order", orderRoutes);
 app.use("/api/attendence",AttendenceRoutes);  
-=======
+
 app.use("/api/staff", StaffRoutes); 
-app.use("/api/order", orderRoutes);  
->>>>>>> 41b0c94699d1ce9ff9f01d73838760fc0de1452b
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

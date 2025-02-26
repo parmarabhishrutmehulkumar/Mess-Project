@@ -14,7 +14,7 @@ const AttendanceController =  async (req, res) => {
     const existingRecord = await Attendance.findOne({ studentUID: student.UID, date });
     if (existingRecord) return res.status(400).json({ message: "Attendance already marked today" });
 
-    await Attendance.create({ studentUID: student.UID, date });
+    await Attendance.create({ studentUID: student.UID, date })
 
     res.json({
       message: "Attendance marked successfully",

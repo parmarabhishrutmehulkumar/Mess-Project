@@ -37,10 +37,6 @@ const SignIn = () => {
     }
   };
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 41b0c94699d1ce9ff9f01d73838760fc0de1452b
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
