@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import AdminNavbar from "./AdminNavbar";
 import AdminFooter from "./AdminFooter";
-import AdminSidebar from "./AdminSidebar"; // Import Sidebar
+import AdminSidebar from "./AdminSidebar";
 import "../../Components/AdminCSS/AdminHome.css";
 import { FaUsers, FaShoppingCart, FaUserCheck, FaExclamationTriangle } from "react-icons/fa";
+
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28FFF"];
 
 const AdminHome = () => {
   const [data, setData] = useState([
@@ -14,7 +16,7 @@ const AdminHome = () => {
     { day: "Wednesday", dishes: 60 },
     { day: "Thursday", dishes: 90 },
     { day: "Friday", dishes: 80 },
-  ]); // Dummy data for UI testing
+  ]); // Dummy Data for UI testing
 
   const [metrics, setMetrics] = useState({
     totalUsers: 0,
@@ -50,7 +52,7 @@ const AdminHome = () => {
 
     fetchDishesServed();
     fetchMetrics();
-    
+
     const interval = setInterval(() => {
       fetchDishesServed();
       fetchMetrics();
@@ -65,22 +67,33 @@ const AdminHome = () => {
       <AdminNavbar />
 
       <div className="admin-home">
-         <AdminSidebar />
+        <AdminSidebar />
 
         <div className="admin-container">
           <h1 className="admin-title">Admin Dashboard</h1>
 
-          {/* Real-Time Dishes Served Graph */}
+          {/* Pie Chart for Dishes Served */}
           <div className="chart-container">
-            <h2>Live Dishes Served Data</h2>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={data}>
-                <XAxis dataKey="day" />
-                <YAxis />
+            <h2>Dishes Served Distribution</h2>
+            <ResponsiveContainer width="100%" height={400}>
+              <PieChart>
+                <Pie
+                  data={data}
+                  dataKey="dishes"
+                  nameKey="day"
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={150}
+                  fill="#8884d8"
+                  label
+                >
+                  {data.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="dishes" fill="#007bff" />
-              </BarChart>
+              </PieChart>
             </ResponsiveContainer>
           </div>
 
