@@ -14,7 +14,7 @@ exports.signup = async (req, res) => {
     const hashedpassword = await bcrypt.hash(password, 10);
     
     // Generate a unique QR code based on the user's email or UID
-    const qrCodeData = `${email}`;
+    const qrCodeData = `${UID}`;
     const qrCodeUrl = await qrcode.toDataURL(qrCodeData);
 
     if (role === "student") {

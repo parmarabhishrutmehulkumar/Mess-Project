@@ -11,7 +11,8 @@ const SignIn = () => {
     password: "",
     role: "",
   });
-  const [error, setError] = useState('');
+ 
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -34,9 +35,6 @@ const SignIn = () => {
     navigate("/home");
   };
 
-  const [error, setError] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;

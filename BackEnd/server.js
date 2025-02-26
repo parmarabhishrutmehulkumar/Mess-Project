@@ -6,6 +6,7 @@ const authRoutes = require("./Routes/authRoutes");
 const menuRoutes = require('./routes/menuRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const StaffRoutes = require('./routes/staffRoutes');
+const AttendenceRoutes = require('./routes/AttendenceRoutes');
 const actualmenuRoutes = require('./routes/actualmenuRoutes');
 
 dotenv.config();  
@@ -21,7 +22,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/menu', menuRoutes);
 app.use("/api/actualmenu", actualmenuRoutes);
 app.use("/api/staff",StaffRoutes); 
-app.use("/api/order", orderRoutes);  
+app.use("/api/order", orderRoutes);
+app.use("/api/attendence",AttendenceRoutes);  
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

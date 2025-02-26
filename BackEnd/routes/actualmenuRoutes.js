@@ -5,16 +5,13 @@ const { verifyToken } = require('../config/verifyToken');
 const router = express.Router();
 
 router.post("/add",verifyToken  ,(req,res,next)=>{
-
     if(req.user.role === "mess-staff") next();
     else res.status(401).json({ message: "Access Denied" });
 }, placeOrder);
 
-
-    if (req.user.role === "mess-staff") next();
-    else res.status(200).json({ message: "Accessed" });
-
-
-router.get("/", getMenuItems);
+router.get("/",(req,res,next)=>{
+    if(req.user.role === "mess-staff") next();
+    else res.status(401).json({ message: "Access Denied" });
+}, getMenuItems);
 
 module.exports = router;
