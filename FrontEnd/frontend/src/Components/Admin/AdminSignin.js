@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./AdminSignin.css";
+import axios from "axios";
 
 const AdminSignIn = () => {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",});
   const navigate = useNavigate();
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    console.log("Admin Signed In:", credentials);
 
-    // Simulate authentication success
+    const {data}  = axios.post("http://localhost:5000/api/staff/signin", credentials);
+    console.log(data);
     setTimeout(() => {
       navigate("/admin/home"); // Redirect to admin dashboard
     });
