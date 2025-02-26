@@ -3,7 +3,6 @@ import { FaStar, FaPaperPlane, FaArrowLeft } from "react-icons/fa"; // Import ba
 import { useNavigate } from "react-router-dom"; // Import for navigation
 import "../Styles/Feedback.css";
 
-
 const Feedback = () => {
   const navigate = useNavigate(); // Hook for navigation
   const [feedback, setFeedback] = useState({
@@ -62,7 +61,7 @@ const Feedback = () => {
       </form>
 
       {/* 🚀 Back to Home Button */}
-      <button className="back-home-button" onClick={() => navigate("/home")}>
+      <button onClick={() => navigate("/home")} className="back-home-button">
         <FaArrowLeft /> Back to Home
       </button>
     </div>

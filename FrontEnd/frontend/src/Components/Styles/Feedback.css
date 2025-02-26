@@ -120,3 +120,71 @@
 .back-home-button:hover {
   background: #495057;
 }
+.feedback-container {
+  /* existing styles */
+}
+
+.feedback-form {
+  /* existing styles */
+}
+
+.submit-button {
+  /* existing styles */
+}
+
+.back-home-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-home-button:hover {
+  background-color: #0056b3;
+}
+
+.back-home-button svg {
+  margin-right: 8px;
+}
+.feedback-container {
+  /* existing styles */
+}
+
+.feedback-form {
+  /* existing styles */
+}
+
+.submit-button {
+  /* existing styles */
+}
+
+.back-home-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 50px; /* Rounded design */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+.back-home-button:hover {
+  background-color: #0056b3;
+}
+
+.back-home-button svg {
+  margin-right: 8px;
+}

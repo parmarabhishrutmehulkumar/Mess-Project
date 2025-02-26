@@ -11,6 +11,9 @@ const SignIn = () => {
     password: "",
     role: "",
   });
+  const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   // Handle form submission
   const handleSubmit = async(e) => {
@@ -64,7 +67,6 @@ const SignIn = () => {
               required
             />
           </div>
-
           <div className="input-group password-group">
             <label htmlFor="password">Password</label>
             <div className="password-input-container">

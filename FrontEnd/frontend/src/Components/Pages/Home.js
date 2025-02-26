@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"; 
+import { Link } from "react-router-dom"; // Add this import
 import Sidebar from "./Sidebar";
 import { FaMoon, FaSun, FaBars, FaTimes, FaUser, FaUtensils, FaCalendarAlt, FaShoppingCart } from "react-icons/fa";
 import "../Styles/Home.css";
@@ -29,7 +30,7 @@ const Home = () => {
   // Set Today's Menu Based on the Current Day
   const getDayMenu = () => {
     const weeklyMenu = {
-      Monday: { breakfast: "Pancakes", lunch: "Panner Masala", dinner: "Spaghetti" },
+      Monday: { breakfast: "Idli-Sambhar & Tea", lunch: "Panner Masala", dinner: "Spaghetti" },
       Tuesday: { breakfast: "Omelette", lunch: "Veggie Burger", dinner: "Masala Curry" },
       Wednesday: { breakfast: "Smoothie Bowl", lunch: "Club Sandwich", dinner: "Pav Bhaji" },
       Thursday: { breakfast: "Avocado Toast", lunch: "Caesar Salad", dinner: "Veg Pulav" },
@@ -121,50 +122,53 @@ const Home = () => {
   ];
 
   const weeklyMenu = [
-    { day: "Monday", breakfast: "Pancakes", lunch: "Paneer Masala", dinner: "Spaghetti" },
-    { day: "Tuesday", breakfast: "Omelette", lunch: "Veggie Burger", dinner: "Masala Curry" },
-    { day: "Wednesday", breakfast: "Smoothie Bowl", lunch: "Club Sandwich", dinner: "Pav Bhaji" },
-    { day: "Thursday", breakfast: "Avocado Toast", lunch: "Caesar Salad", dinner: "Veg Pulav" },
-    { day: "Friday", breakfast: "French Toast", lunch: "Chinese Wrap", dinner: "Pizza" },
-    { day: "Saturday", breakfast: "Dosa", lunch: "Pasta", dinner: "BBQ" },
-    { day: "Sunday", breakfast: "Samosa", lunch: "French Fries", dinner: "Sushi" }
+    { day: "Monday", breakfast: "Idli-Sambhar & Tea", lunch: "Dal-Batti,Rice,Chaas & Salad", dinner: "Patta Gobhi,Dal,Roti,Rice,Dry Manchurian" },
+    { day: "Tuesday", breakfast: "Veg. Kathi Roll & Tea", lunch: "Jeera Aloo,Kadhi,Rice,Roti,Salad", dinner: "Panner Veg, Fried Rice, Roti, Sweet, Salad" },
+    { day: "Wednesday", breakfast: "Poha,Sev,Kadhi & Tea", lunch: "Chhole Bhature,Jeera Rice, Chaas,Salad", dinner: "Soya Matar,Dal,Rice,Roti" },
+    { day: "Thursday", breakfast: "Usal Pav & Tea", lunch: "Green Vege,Dal,Roti,Chass,Salad", dinner: "Sev-Tamatar,Dal,Roti,RiceChinese Fried Rice" },
+    { day: "Friday", breakfast: "Aloo-Paratha", lunch: "Masala Baigan,Roti,Dal,Rice,Chass,Salad", dinner: "Totha Bhakri,Fried Rice,Salad,Halva" },
+    { day: "Saturday", breakfast: "Khaman-Kadhi & Tea", lunch: "Mix-Veg,Dal,Roti,Rice,Chass, Salad", dinner: "Veg. Kofta,Roti,Dal,Rice,Salad,Pikle" },
+    { day: "Sunday", breakfast: "Samosa Chutney & Tea", lunch: "Ghiya Chana,Dal,Roti,Rice,Chass,Salad", dinner: "Corn -Fritters,Dal,Roti,Dal,Rice,Salad" }
   ];
 
   return (
+    <>
+ 
     <div className="home-container">
       <header className="main-header">
         <div className="header-container">
           <div className="logo">
-            <img src="https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bG9nb3xlbnwwfHwwfHx8MA%3D%3D" alt="Logo" className="logo-img" />
-            <span className="logo-text">MMS</span>
+            <img src="https://plus.unsplash.com/premium_photo-1668902221435-1239bbdb60b5?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Logo" className="logo-img" />
+            <span className="logo-text">Mess Cafeteria</span>
           </div>
           
           <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
             {mobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
           </div>
-          
+          <Sidebar />
           <nav className={`main-nav ${mobileMenuOpen ? 'mobile-active' : ''}`}>
             <ul>
-              <li className="active"><a href="#home">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
+              <li className="active"><Link to="/home">Home</Link></li>
+           
+              
               <li className="dropdown">
-                <a href="#register">Register</a>
+                <Link to="/signup">Sign Up</Link>
                 <div className="dropdown-content">
-                  <a href="#student">Student</a>
-                  <a href="#staff">Staff</a>
-                  <a href="#guest">Guest</a>
+                  <Link to="/student">Student</Link>
+                  <Link to="/faculty">Faculty</Link>
                 </div>
+                
               </li>
-              <li><a href="#login">Login</a></li>
+              <li><Link to="/attendance">Attendance</Link></li>
+              <li><Link to="/signin">Login</Link></li>
             </ul>
           </nav>
           
           <div className="header-actions">
-            {/* <div onClick={toggleDarkMode} className="dark-mode-toggle header-icon">
+            <div onClick={toggleDarkMode} className="dark-mode-toggle header-icon">
               {darkMode ? <FaSun size={20} /> : <FaMoon size={20} />}
-            </div> */}
-            <a href="#profile" className="header-icon"><FaUser size={20} /></a>
+            </div> 
+            <Link to="/profile" className="header-icon"><FaUser size={20} /></Link>
           </div>
         </div>
       </header>
@@ -248,21 +252,21 @@ const Home = () => {
           <div className="token-options">
             <div className="token-card">
               <h3>Breakfast</h3>
-              <p className="token-price">₹50 per meal</p>
+              <p className="token-price">₹70 per meal</p>
               <p className="token-desc">Available from 7:30 AM to 9:30 AM</p>
               <button className="token-button">Purchase</button>
             </div>
             
             <div className="token-card">
               <h3>Lunch</h3>
-              <p className="token-price">₹80 per meal</p>
-              <p className="token-desc">Available from 12:30 PM to 2:30 PM</p>
+              <p className="token-price">₹70 per meal</p>
+              <p className="token-desc">Available from 12:15 PM to 2:00 PM</p>
               <button className="token-button">Purchase</button>
             </div>
             
             <div className="token-card">
               <h3>Dinner</h3>
-              <p className="token-price">₹80 per meal</p>
+              <p className="token-price">₹70 per meal</p>
               <p className="token-desc">Available from 7:00 PM to 9:00 PM</p>
               <button className="token-button">Purchase</button>
             </div>
@@ -302,7 +306,7 @@ const Home = () => {
                 <div className="meal-card">
                   <h3>Lunch</h3>
                   <p className="meal-item">{todayMenu.lunch}</p>
-                  <p className="meal-time">12:30 PM - 2:30 PM</p>
+                  <p className="meal-time">12:15 PM - 2:00 PM</p>
                 </div>
                 
                 <div className="meal-card">
@@ -353,10 +357,10 @@ const Home = () => {
           <div className="footer-section">
             <h3>Quick Links</h3>
             <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><Link to="/home">Home</Link></li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/attendance">Attendance</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
           
@@ -373,6 +377,7 @@ const Home = () => {
         </div>
       </footer>
     </div>
+    </>
   );
 };
 
