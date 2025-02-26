@@ -21,6 +21,7 @@ import ManageMenu from './Components/Admin/ManageMenu';
 import TokenPurchased from './Components/Admin/TokenPurchased';
 import Attendance from './Components/Admin/Attendance';
 import Complaints from './Components/Admin/Complaints';
+import StudentAttendence from './Components/Pages/StudentAttendence';
 
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
           <Route path="/admin/manage-menu" element={<ManageMenu />} />
           <Route path="/admin/token-purchased" element={<TokenPurchased />} />
           <Route path="/admin/attendance" element={<Attendance />} />
+          <Route path='/student/attendence' element={<StudentAttendence/>}/>
 
         </Routes>
       </Router>

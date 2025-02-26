@@ -3,6 +3,17 @@ const { placeOrder, getMenuItems } = require("../controllers/actualMenuControlle
 const { verifyToken } = require("../config/verifyToken");
 const router = express.Router();
 
+
+router.post("/add",verifyToken  ,(req,res,next)=>{
+    if(req.user.role === "mess-staff") next();
+    else res.status(401).json({ message: "Access Denied" });
+}, placeOrder);
+
+router.get("/",(req,res,next)=>{
+    if(req.user.role === "mess-staff") next();
+    else res.status(401).json({ message: "Access Denied" });
+}, getMenuItems);
+
 // Middleware to check if user is mess-staff
 const checkMessStaff = (req, res, next) => {
   if (req.user && req.user.role === "mess-staff") {
