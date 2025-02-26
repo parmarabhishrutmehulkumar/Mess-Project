@@ -581,3 +581,37 @@ p {
   transition: var(--transition);
   border-bottom: 3px solid var(--primary-color);
 }
+.weekly-menu {
+  margin: 20px auto;
+  width: 80%;
+  text-align: center;
+}
+
+.weekly-menu h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background-color: #ff9800;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}

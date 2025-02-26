@@ -1,12 +1,22 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "../../Components/AdminCSS/TokenPurchased.css"; // Add CSS file if needed
 
 const TokenPurchased = () => {
-  const [tokenData] = useState([
-    { date: "2025-02-21", tokensSold: 120, totalRevenue: 6000 },
-    { date: "2025-02-20", tokensSold: 95, totalRevenue: 4750 },
-    { date: "2025-02-19", tokensSold: 110, totalRevenue: 5500 },
-  ]);
+  const [tokens, setTokens] = useState([]);
+
+  useEffect(() => {
+    const fetchTokens = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:5000/api/order/orders");
+        setTokens(data);
+      } catch (error) {
+        console.error("Error fetching tokens", error);
+      }
+    };
+
+    fetchTokens();
+  }, []);
 
   return (
     <div className="token-stats-container">
@@ -14,17 +24,23 @@ const TokenPurchased = () => {
       <table className="token-stats-table">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Tokens Sold</th>
-            <th>Total Revenue (₹)</th>
+            <th>Order ID</th>
+            <th>Payment ID</th>
+            <th>Meal Type</th>
+            <th>Quantity</th>
+            <th>Amount (₹)</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          {tokenData.map((entry, index) => (
+          {tokens.map((token, index) => (
             <tr key={index}>
-              <td>{entry.date}</td>
-              <td>{entry.tokensSold}</td>
-              <td>{entry.totalRevenue}</td>
+              <td>{token.orderId}</td>
+              <td>{token.paymentId}</td>
+              <td>{token.ticketDetails.mealType}</td>
+              <td>{token.ticketDetails.quantity}</td>
+              <td>{token.ticketDetails.amount}</td>
+              <td>{token.status}</td>
             </tr>
           ))}
         </tbody>

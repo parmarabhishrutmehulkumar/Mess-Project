@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"; // Import the useNavigate hook f
 import "../Styles/SignIn.css";
 import axios from "axios";
 import { IconEye, IconEyeOff } from "@tabler/icons-react"; // Import icons for password visibility
-import "../Styles/SignIn.css";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +16,7 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   // Handle form submission
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -27,15 +26,21 @@ const SignIn = () => {
       return;
     }
 
-    const {data} =await axios.post("http://localhost:5000/api/auth/signin", formData)
+    try {
+      const { data } = await axios.post("http://localhost:5000/api/auth/signin", formData);
+      console.log(data);
 
-    console.log(data)
-     
-    localStorage.setItem("user", JSON.stringify(data.userDetails)); // Store user data in local storage
-    navigate("/home");
+      localStorage.setItem("user", JSON.stringify(data.userDetails)); // Store user data in local storage
+      navigate("/home");
+    } catch (error) {
+      setError("Sign-in failed. Please check your credentials.");
+    }
   };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 41b0c94699d1ce9ff9f01d73838760fc0de1452b
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -65,6 +70,7 @@ const SignIn = () => {
               required
             />
           </div>
+
           <div className="input-group password-group">
             <label htmlFor="password">Password</label>
             <div className="password-input-container">
