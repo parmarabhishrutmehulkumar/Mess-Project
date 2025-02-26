@@ -1,175 +1,74 @@
-/* General Container Styling */
-.admin-container {
-  max-width: 100%;
-  margin: auto;
-  text-align: center;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Title Styling */
-.admin-title {
-  font-size: 32px;
-  font-weight: bold;
-  color: #222;
-  margin-bottom: 20px;
-}
-
-/* Chart Container */
-.chart-container {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  max-width: 1200px;
-}
-
-/* Sidebar & Content Layout */
-.admin-home {
-  display: flex;
-  min-height: 100vh;
-}
-
-/* Sidebar */
 .admin-sidebar {
-  width: 260px;
-  background: #007bff;
-  padding: 20px;
-  color: white;
-  position: fixed;
-  height: 100%;
-  left: 0;
-  top: 0;
-  transition: all 0.3s ease-in-out;
+  width: 250px; /* Default width of the sidebar */
+  background-color: #343a40; /* Dark background color */
+  color: #ffffff; /* White text color */
+  transition: width 0.3s; /* Smooth transition for width change */
+  height: calc(100vh - 60px); /* Full height minus navbar height */
+  position: fixed; /* Fixed position on the left */
+  top: 60px; /* Adjust based on your navbar's height */
+  left: 0; /* Align to the left */
+  overflow: hidden; /* Hide overflow */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 999; /* Ensure it appears below the navbar */
 }
 
-.admin-sidebar .toggle-btn:hover {
-  background: #004494;
+.admin-sidebar.collapsed {
+  width: 50px; /* Width when collapsed */
 }
 
-/* Sidebar Links */
-.admin-menu {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 15px;
-  margin-top: 20px;
+.sidebar-header {
+  display: flex; /* Use flexbox for header layout */
+  align-items: center; /* Center align items vertically */
+  padding: 15px; /* Padding around the header */
 }
 
-.admin-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding: 12px 15px;
-  background: #0056b3;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: background 0.3s ease-in-out;
+.toggle-btn {
+  background: none; /* No background */
+  border: none; /* No border */
+  color: #ffffff; /* White color for the button */
+  font-size: 24px; /* Font size for the icon */
+  cursor: pointer; /* Pointer cursor on hover */
 }
 
-.admin-link i {
-  font-size: 18px;
+.sidebar-title {
+  margin-left: 10px; /* Space between icon and title */
+  font-size: 20px; /* Font size for the title */
 }
 
-.admin-link:hover {
-  background: #004494;
+.sidebar-menu {
+  list-style: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
 }
 
-/* Content Section */
-.admin-content {
-  margin-left: 260px;
-  padding: 20px;
-  width: 100%;
-  transition: margin-left 0.3s ease-in-out;
+.sidebar-menu li {
+  padding: 15px 20px; /* Padding for each menu item */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
-.admin-content.collapsed {
-  margin-left: 80px;
+.sidebar-menu li:hover {
+  background-color: #495057; /* Darker background on hover */
 }
 
-/* Statistics Cards */
-.stats-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-  width: 90%;
-  max-width: 1200px;
+.sidebar-menu a {
+  color: #ffffff; /* White text color for links */
+  text-decoration: none; /* Remove underline */
+  display: flex; /* Use flexbox for icon and text */
+  align-items: center; /* Center align items vertically */
 }
 
-.stat-card {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.3s ease-in-out;
-}
-
-.stat-card:hover {
-  transform: translateY(-5px);
-}
-
-.stat-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.stat-value {
-  font-size: 24px;
-  font-weight: bold;
-  color: #007bff;
+.sidebar-icon {
+  font-size: 20px; /* Icon size */
+  margin-right: 10px; /* Space between icon and text */
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-  .admin-sidebar {
-    width: 80px;
-  }
-  .admin-content {
-    margin-left: 80px;
-  }
-  .chart-container,
-  .stats-container {
-    width: 95%;
-  }
-}
-
 @media (max-width: 768px) {
-  .admin-home {
-    flex-direction: column;
-  }
   .admin-sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
+    width: 200px; /* Adjust width for smaller screens */
   }
-  .admin-content {
-    margin-left: 0;
-    width: 100%;
-    padding: 15px;
-  }
-}
 
-@media (max-width: 480px) {
-  .chart-container,
-  .stats-container {
-    width: 100%;
-  }
-  .stat-card {
-    padding: 15px;
+  .admin-sidebar.collapsed {
+    width: 60px; /* Adjust collapsed width for smaller screens */
   }
 }

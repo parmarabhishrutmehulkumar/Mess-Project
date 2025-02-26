@@ -1,33 +1,55 @@
 .admin-navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #007bff;
-    padding: 15px 20px;
-    color: white;
-  }
-  
-  .navbar-title {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .nav-link {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    padding: 8px 12px;
-    transition: 0.3s;
-  }
-  
-  .nav-link:hover {
-    background: white;
-    color: #007bff;
-    border-radius: 5px;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 20px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 70px;
+}
+
+.navbar-title {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-link {
+  color: #ffffff; /* White text color for links */
+  text-decoration: none; /* Remove underline */
+  font-size: 18px; /* Font size for links */
+  transition: color 0.3s; /* Smooth transition for hover effect */
+  display: flex;
+  align-items: center;
+}
+
+.admin-sidebar.collapsed .nav-link {
+  justify-content: center; /* Center the icons when collapsed */
+}
+
+.admin-sidebar.collapsed .sidebar-icon {
+  margin-right: 0; /* Remove margin when collapsed */
+}
+
+.admin-sidebar.collapsed .nav-text {
+  display: none; /* Hide text when collapsed */
+}
+
+.sidebar-icon {
+  font-size: 24px; /* Adjust icon size */
+  margin-right: 10px; /* Space between icon and text */
+}
+
+
+.nav-link:hover {
+  color: #e0e0e0;
+}

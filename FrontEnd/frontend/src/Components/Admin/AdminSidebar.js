@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaUsers, FaUtensils, FaExclamationTriangle, FaChartBar, FaUserCheck, FaShoppingCart} from "react-icons/fa";
+import { FaBars, FaUsers, FaUtensils, FaExclamationTriangle, FaChartBar, FaUserCheck, FaShoppingCart } from "react-icons/fa";
 import "../../Components/AdminCSS/AdminSidebar.css"; // Sidebar CSS
 
 const AdminSidebar = ({ setSelectedComponent }) => {
@@ -12,7 +12,6 @@ const AdminSidebar = ({ setSelectedComponent }) => {
         <button className="toggle-btn" onClick={() => setIsCollapsed(!isCollapsed)}>
           <FaBars />
         </button>
-        {!isCollapsed && <h2 className="sidebar-title">Admin</h2>}
       </div>
 
       <ul className="sidebar-menu">
@@ -22,9 +21,9 @@ const AdminSidebar = ({ setSelectedComponent }) => {
           </Link>
         </li>
         <li>
-            <Link to="/admin/manage-menu">
+          <Link to="/admin/manage-menu">
             <FaUtensils className="sidebar-icon" /> {!isCollapsed && "Manage Menu"}
-            </Link>
+          </Link>
         </li>
         <li>
           <Link to="/admin/complaints">

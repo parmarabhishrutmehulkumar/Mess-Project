@@ -6,7 +6,7 @@ const authRoutes = require("./Routes/authRoutes");
 const menuRoutes = require('./routes/menuRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const StaffRoutes = require('./routes/staffRoutes');
-const PurchaseRoutes = require('./routes/purchaseRoutes');
+//const PurchaseRoutes = require('./routes/purchaseRoutes');
 const AttendenceRoutes = require('./routes/AttendenceRoutes');
 const actualmenuRoutes = require('./routes/actualmenuRoutes');
 
