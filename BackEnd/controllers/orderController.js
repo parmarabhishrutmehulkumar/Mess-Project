@@ -1,35 +1,25 @@
 const Order = require('../models/order');
 const Faculty = require('../models/faculty');
-const FullMenu = require('../models/ActualMenu');
 const { v4: uuidv4 } = require('uuid');
 const { sendOrderEmail } = require('../config/OrderMail');
 const QRCode = require('qrcode');
 
 const placeOrder = async (req, res) => {
     try {
-        const { facultyName, items } = req.body;
-        
+        const { mealCategory } = req.body;
 
-        const faculty = await Faculty.findOne({ name: facultyName });
+        console.log(req.user);
 
-        
+        const faculty = await Faculty.findById(req.user.userId);
         if (!faculty) return res.status(404).json({ msg: "Faculty not found" });
 
-        const orderedItems = await Promise.all(
-            items.map(async (item) => {
-                const menuItem = await FullMenu.findOne({ dish: item.dish });
-                if (!menuItem) throw new Error(`Menu item '${item.name}' not found`);
-                return {
-                    menuItem: menuItem._id,
-                    name: menuItem.dish,
-                    quantity: item.quantity,
-                    price: menuItem.price
-                };
-            })
-        );
+        const existingOrder = await Order.findOne({
+            facultyId: faculty._id,
+            mealCategory,
+            orderDate: { $gte: new Date().setHours(0, 0, 0, 0) }
+        });
 
-
-        const totalPrice = orderedItems.reduce((sum, item) => sum + item.quantity * item.price, 0);
+        if (existingOrder) return res.status(400).json({ msg: "Order already placed for today" });
 
         const tokenId = uuidv4();
         const qrCode = await QRCode.toDataURL(tokenId);
@@ -37,32 +27,28 @@ const placeOrder = async (req, res) => {
         const order = new Order({
             facultyId: faculty._id,
             facultyName: faculty.name,
-            facultyEmail: faculty.email,
-            items: orderedItems,
-            totalPrice,
+            mealCategory,
             tokenId,
             qrCode
         });
 
-
-
         await order.save();
 
-        // Send email to mess staff
-        await sendOrderEmail( {
+        // Send Email Notification
+        await sendOrderEmail(faculty.email,{
             facultyName: faculty.name,
-            facultyEmail: faculty.email,
+            mealCategory,
             tokenId,
-            totalPrice,
-            orderedItems,
             qrCodeDataUrl: qrCode
         });
 
-        res.status(201).json({ msg: "Order placed successfully", orderId: order._id, tokenId, items: orderedItems });
+        res.status(201).json({ msg: "Order placed successfully", orderId: order._id, tokenId, mealCategory });
     } catch (error) {
         res.status(500).json({ msg: error.message });
     }
 };
+
+module.exports = { placeOrder };
 
 const getOrders = async (req, res) => {
   try {
