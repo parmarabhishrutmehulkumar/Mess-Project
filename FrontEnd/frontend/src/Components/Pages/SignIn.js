@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import the useNavigate hook for redirection
 import "../Styles/SignIn.css";
 import axios from "axios";
-import { FaEye, FaEyeSlash } from "react-icons/fa";// or any other correct library
- // or any other correct library
+import { IconEye, IconEyeOff } from "@tabler/icons-react"; // Import icons for password visibility
+import "../Styles/SignIn.css";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    role: "",
   });
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     setError("");
 
@@ -25,19 +26,17 @@ const SignIn = () => {
       return;
     }
 
-    axios
-      .post("http://localhost:5000/api/auth/signin", formData)
-      .then((response) => {
-        console.log("Sign-in successful:", response.data);
-        localStorage.setItem("user", JSON.stringify(response.data)); // Store user data in local storage
-        navigate("/home");
-      })
-      .catch((error) => {
-        // Handle sign-in error
-        console.error("Sign-in error:", error);
-        setError("Sign-in failed. Please check your credentials.");
-      });
+    const {data} =await axios.post("http://localhost:5000/api/auth/signin", formData)
+
+    console.log(data)
+     
+    localStorage.setItem("user", JSON.stringify(data.userDetails)); // Store user data in local storage
+    navigate("/home");
   };
+
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,9 +50,9 @@ const SignIn = () => {
     <div className="signin-wrapper">
       <div className="signin-container">
         <h2>Welcome Back</h2>
-        
+
         {error && <div className="message error">{error}</div>}
-        
+
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <label htmlFor="email">Email Address</label>
@@ -68,7 +67,6 @@ const SignIn = () => {
               required
             />
           </div>
-  
           <div className="input-group password-group">
             <label htmlFor="password">Password</label>
             <div className="password-input-container">
@@ -82,24 +80,44 @@ const SignIn = () => {
                 className={error && !formData.password ? "error-input" : ""}
                 required
               />
-              <button 
-                type="button" 
-                className="toggle-password" 
+              <button
+                type="button"
+                className="toggle-password"
                 onClick={() => setShowPassword(!showPassword)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
-                {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+                {showPassword ? (
+                  <IconEyeOff size={20} />
+                ) : (
+                  <IconEye size={20} />
+                )}
               </button>
             </div>
           </div>
-          
+
+          <div className="input-group">
+            <label htmlFor="role">Role</label>
+            <select
+              id="role"
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+            >
+              <option value="">Select Role</option>
+              <option value="student">Student</option>
+              <option value="faculty">Faculty</option>
+            </select>
+          </div>
+
           <div className="forgot-password">
             <a href="/forgot-password">Forgot password?</a>
           </div>
-  
-          <button type="submit" className="submit-btn">Sign In</button>
+
+          <button type="submit" className="submit-btn">
+            Sign In
+          </button>
         </form>
-        
+
         <div className="signup-link">
           Don't have an account? <a href="/signup">Sign Up</a>
         </div>

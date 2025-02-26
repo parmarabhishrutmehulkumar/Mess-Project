@@ -3,20 +3,9 @@ const { addMenuItem, getMenuItems, updateMenuItem, deleteMenuItem } = require('.
 const {verifyToken} = require('../config/verifyToken');
 const router = express.Router();
 
-router.post('/add', verifyToken,(req,res,next)=>{
-    if(req.user.role === "mess-staff") next();
-
-    else res.status(401).json({ message: "Access Denied" });
-
-}, addMenuItem);
+router.post('/add', verifyToken, addMenuItem);
 router.get('/', getMenuItems);
-router.put('/update/:id', verifyToken,(req,res,next)=>{
-    if(req.user.role === "mess-staff") next();
-    else res.status(401).json({ message: "Access Denied" });
-}, updateMenuItem);
-router.delete('/delete/:id', verifyToken,(req,res,next)=>{
-    if(req.user.role === "mess-staff") next();
-    else res.status(401).json({ message: "Access Denied" });
-}, deleteMenuItem);
+router.put('/update/:id', verifyToken, updateMenuItem);
+router.delete('/delete/:id', verifyToken, deleteMenuItem);
 
 module.exports = router;

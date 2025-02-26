@@ -10,7 +10,7 @@ const Signup = () => {
     email: "",
     uid: "",
     password: "",
-    role: "student",
+    role: "",
   });
 
   const [error, setError] = useState("");
@@ -137,6 +137,7 @@ const Signup = () => {
               value={formData.role} 
               onChange={handleChange}
             >
+              <option value="">select Role</option>
               <option value="student">Student</option>
               <option value="faculty">Faculty</option>
             </select>

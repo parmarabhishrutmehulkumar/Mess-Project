@@ -1,31 +1,42 @@
-import React, { useState } from "react";
-import "../../Components/AdminCSS/ManageMenu.css"; // Add styles
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "../../Components/AdminCSS/ManageMenu.css";
 
 const ManageMenu = () => {
-  const initialMenu = [
-    { id: 1, day: "Monday", breakfast: "Pancakes", lunch: "Paneer Shawarma", dinner: "Pasta" },
-    { id: 2, day: "Tuesday", breakfast: "Oatmeal", lunch: "Veggie Wrap", dinner: "Pizza" },
-    { id: 3, day: "Wednesday", breakfast: "Smoothie", lunch: "Rice & Beans", dinner: "Salad" },
-    { id: 4, day: "Thursday", breakfast: "Toast", lunch: "Noodles", dinner: "Soup" },
-    { id: 5, day: "Friday", breakfast: "Paratha", lunch: "Veg Biryani", dinner: "Burger" },
-    { id: 6, day: "Saturday", breakfast: "Dosa", lunch: "Paneer Curry", dinner: "Sushi" },
-    { id: 7, day: "Sunday", breakfast: "Idli", lunch: "Dal Tadka", dinner: "Tacos" },
-  ];
-
-  const [menu, setMenu] = useState(initialMenu);
+  const [menu, setMenu] = useState([]);
   const [newDish, setNewDish] = useState("");
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedMeal, setSelectedMeal] = useState("");
 
-  // Update dish for selected day and meal type
-  const handleUpdate = () => {
+  useEffect(() => {
+    fetchMenu();
+  }, []);
+
+  const fetchMenu = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/menu");
+      setMenu(response.data);
+    } catch (error) {
+      console.error("Error fetching menu:", error);
+    }
+  };
+
+  const handleUpdate = async () => {
     if (selectedDay && selectedMeal && newDish) {
-      setMenu(menu.map((item) =>
-        item.day === selectedDay ? { ...item, [selectedMeal]: newDish } : item
-      ));
-      setNewDish("");
-      setSelectedDay("");
-      setSelectedMeal("");
+      try {
+        const response = await axios.post("http://localhost:5000/api/menu", {
+          dish: newDish,
+          category: selectedMeal,
+          available: true,
+        });
+
+        setMenu([...menu, response.data.newMenuItem]);
+        setNewDish("");
+        setSelectedDay("");
+        setSelectedMeal("");
+      } catch (error) {
+        console.error("Error updating menu:", error);
+      }
     }
   };
 
@@ -33,7 +44,6 @@ const ManageMenu = () => {
     <div className="menu-container">
       <h2>Manage Weekly Menu</h2>
 
-      {/* Menu Table (Only Display for Users) */}
       <table className="menu-table">
         <thead>
           <tr>
@@ -45,41 +55,35 @@ const ManageMenu = () => {
         </thead>
         <tbody>
           {menu.map((item) => (
-            <tr key={item.id}>
+            <tr key={item._id}>
               <td>{item.day}</td>
-              <td>{item.breakfast}</td>
-              <td>{item.lunch}</td>
-              <td>{item.dinner}</td>
+              <td>{item.category === "breakfast" ? item.dish : ""}</td>
+              <td>{item.category === "lunch" ? item.dish : ""}</td>
+              <td>{item.category === "dinner" ? item.dish : ""}</td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* Admin Controls for Adding/Updating Menu */}
       <div className="admin-controls">
         <h3>Update Menu</h3>
         <select value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
           <option value="">Select Day</option>
-          {menu.map((item) => (
-            <option key={item.id} value={item.day}>
-              {item.day}
+          {["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map((day) => (
+            <option key={day} value={day}>
+              {day}
             </option>
           ))}
         </select>
 
         <select value={selectedMeal} onChange={(e) => setSelectedMeal(e.target.value)}>
           <option value="">Select Meal Type</option>
-          <option value="breakfast">Breakfast</option>
+          <option value="morning">Breakfast</option>
           <option value="lunch">Lunch</option>
           <option value="dinner">Dinner</option>
         </select>
 
-        <input
-          type="text"
-          placeholder="Enter New Dish"
-          value={newDish}
-          onChange={(e) => setNewDish(e.target.value)}
-        />
+        <input type="text" placeholder="Enter New Dish" value={newDish} onChange={(e) => setNewDish(e.target.value)} />
         <button onClick={handleUpdate}>Update</button>
       </div>
     </div>
