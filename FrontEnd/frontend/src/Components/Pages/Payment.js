@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {QRCodeCanvas} from "qrcode.react";
-
+import "../Styles/Payment.css";
 const Payment = () => {
   const [ticket, setTicket] = useState({
     name: "",
@@ -91,7 +91,7 @@ const Payment = () => {
       <input type="number" name="quantity" value={ticket.quantity} onChange={handleChange} min="1" />
       <p>Total Amount: ₹{ticket.amount * ticket.quantity}</p>
 
-      <button onClick={handlePayment}>Pay Now</button>
+      <button  className="pay-now-btn" onClick={handlePayment}>Pay Now</button>
 
       {qrData && (
         <div>

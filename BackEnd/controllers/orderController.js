@@ -94,43 +94,20 @@ const verifyPayment = async (req, res) => {
 
   if (expectedSignature === signature) {
     try {
-      const { mealCategory } = req.body;
+      const qrCodeData = await QRCode.toDataURL(JSON.stringify(ticketDetails));
 
-      console.log(req.user);
-
-      const faculty = await Faculty.findById(req.user.userId);
-      if (!faculty) return res.status(404).json({ msg: "Faculty not found" });
-
-      const existingOrder = await Order.findOne({
-        facultyId: faculty._id,
-        mealCategory,
-        orderDate: { $gte: new Date().setHours(0, 0, 0, 0) }
-      });
-
-      if (existingOrder) return res.status(400).json({ msg: "Order already placed for today" });
-
-      const tokenId = uuidv4();
-      const qrCode = await QRCode.toDataURL(tokenId);
-
+      // Save order details to the database
       const order = new Order({
-        facultyId: faculty._id,
-        facultyName: faculty.name,
-        mealCategory,
-        tokenId,
-        qrCode
+        orderId,
+        paymentId,
+        ticketDetails,
+        qrCode: qrCodeData,
+        status: "Paid",
       });
 
       await order.save();
 
-      // Send Email Notification
-      await sendOrderEmail(faculty.email, {
-        facultyName: faculty.name,
-        mealCategory,
-        tokenId,
-        qrCodeDataUrl: qrCode
-      });
-
-      res.status(201).json({ msg: "Order placed successfully", orderId: order._id, tokenId, mealCategory });
+      res.send({ success: true, qrCode: qrCodeData });
     } catch (error) {
       res.status(500).send({ success: false, error: error.message });
     }
@@ -148,4 +125,13 @@ const getOrders = async (req, res) => {
   }
 };
 
-module.exports = { placeOrder, getOrders, createOrder, verifyPayment };
+const getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find().populate("items");
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching orders" });
+  }
+};
+
+module.exports = { placeOrder, getOrders, createOrder, verifyPayment, getAllOrders };
