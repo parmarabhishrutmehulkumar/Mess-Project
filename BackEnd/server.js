@@ -20,7 +20,7 @@ connectDatabase();
 app.use('/api/auth', authRoutes);
 app.use('/api/menu', menuRoutes);
 app.use("/api/actualmenu", actualmenuRoutes);
-app.use("/api/staff",StaffRoutes); 
+app.use("/api/staff", StaffRoutes); 
 app.use("/api/order", orderRoutes);  
 
 const PORT = process.env.PORT || 5000;
