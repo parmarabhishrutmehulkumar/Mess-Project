@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"; // Add this import
 import Sidebar from "./Sidebar";
 import { FaMoon, FaSun, FaBars, FaTimes, FaUser, FaUtensils, FaCalendarAlt, FaShoppingCart } from "react-icons/fa";
 import "../Styles/Home.css";
-import TicketPurchase from "./TicketPurchase";
+import Payment from "./Payment"; // Import the Payment component
 
 const Home = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -16,6 +16,7 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('today');
+  const [selectedMeal, setSelectedMeal] = useState(null); // State to hold selected meal for payment
   const sliderRef = useRef(null);
   const sliderInterval = useRef(null);
 
@@ -131,9 +132,12 @@ const Home = () => {
     { day: "Sunday", breakfast: "Samosa Chutney & Tea", lunch: "Ghiya Chana,Dal,Roti,Rice,Chass,Salad", dinner: "Corn -Fritters,Dal,Roti,Dal,Rice,Salad" }
   ];
 
+  const handlePurchase = (mealType) => {
+    setSelectedMeal(mealType);
+  };
+
   return (
     <>
- 
     <div className="home-container">
       <header className="main-header">
         <div className="header-container">
@@ -254,21 +258,21 @@ const Home = () => {
               <h3>Breakfast</h3>
               <p className="token-price">₹70 per meal</p>
               <p className="token-desc">Available from 7:30 AM to 9:30 AM</p>
-              <button className="token-button">Purchase</button>
+              <button className="token-button" onClick={() => handlePurchase("Breakfast")}>Purchase</button>
             </div>
             
             <div className="token-card">
               <h3>Lunch</h3>
               <p className="token-price">₹70 per meal</p>
               <p className="token-desc">Available from 12:15 PM to 2:00 PM</p>
-              <button className="token-button">Purchase</button>
+              <button className="token-button" onClick={() => handlePurchase("Lunch")}>Purchase</button>
             </div>
             
             <div className="token-card">
               <h3>Dinner</h3>
               <p className="token-price">₹70 per meal</p>
               <p className="token-desc">Available from 7:00 PM to 9:00 PM</p>
-              <button className="token-button">Purchase</button>
+              <button className="token-button" onClick={() => handlePurchase("Dinner")}>Purchase</button>
             </div>
           </div>
         </section>
@@ -344,7 +348,7 @@ const Home = () => {
           </div>
         </section>
         
-        <TicketPurchase />
+        {selectedMeal && <Payment mealType={selectedMeal} />} {/* Render Payment component when a meal is selected */}
       </main>
       
       <footer className="main-footer">
