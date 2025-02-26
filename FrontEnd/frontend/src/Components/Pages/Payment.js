@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {QRCodeCanvas} from "qrcode.react";
+import { QRCodeCanvas } from "qrcode.react";
 import "../Styles/Payment.css";
 // import faculty from "../../../../../BackEnd/models/faculty";
 const Payment = () => {
@@ -13,7 +13,6 @@ const Payment = () => {
   });
 
   const [qrData, setQrData] = useState(null);
-
 
   const UserInfo = localStorage.getItem("user");
   const user = JSON.parse(UserInfo);
@@ -41,16 +40,21 @@ const Payment = () => {
     const scriptLoaded = await loadRazorpayScript();
 
     if (!scriptLoaded) {
-      alert("Failed to load Razorpay SDK. Please check your internet connection.");
+      alert(
+        "Failed to load Razorpay SDK. Please check your internet connection."
+      );
       return;
     }
 
     try {
-      const { data } = await axios.post("http://localhost:5000/api/order/order", {
-        amount: ticket.amount * ticket.quantity,
-        currency: "INR",
-        receipt: "receipt#1",
-      });
+      const { data } = await axios.post(
+        "http://localhost:5000/api/order/order",
+        {
+          amount: ticket.amount * ticket.quantity,
+          currency: "INR",
+          receipt: "receipt#1",
+        }
+      );
       console.log("Order created successfully:", data);
       const options = {
         key: "rzp_test_g3ezQExpMD4bv6", // Replace with Razorpay Key ID
@@ -61,14 +65,20 @@ const Payment = () => {
         order_id: data.orderId,
 
         handler: async (response) => {
-          const verifyRes = await axios.post("http://localhost:5000/api/order/payment/verify", {
-            orderId: response.razorpay_order_id,
-            paymentId: response.razorpay_payment_id,
-            signature: response.razorpay_signature,
-            facultyId: user._id,
-            facultyName: user.name,
-            ticketDetails: { ...ticket, amount: ticket.amount * ticket.quantity },
-          });
+          const verifyRes = await axios.post(
+            "http://localhost:5000/api/order/payment/verify",
+            {
+              orderId: response.razorpay_order_id,
+              paymentId: response.razorpay_payment_id,
+              signature: response.razorpay_signature,
+              facultyId: user._id,
+              facultyName: user.name,
+              ticketDetails: {
+                ...ticket,
+                amount: ticket.amount * ticket.quantity,
+              },
+            }
+          );
 
           setQrData(verifyRes.data.qrCode);
         },
@@ -95,10 +105,18 @@ const Payment = () => {
         <option value="Dinner">Dinner</option>
       </select>
 
-      <input type="number" name="quantity" value={ticket.quantity} onChange={handleChange} min="1" />
+      <input
+        type="number"
+        name="quantity"
+        value={ticket.quantity}
+        onChange={handleChange}
+        min="1"
+      />
       <p>Total Amount: ₹{ticket.amount * ticket.quantity}</p>
 
-      <button  className="pay-now-btn" onClick={handlePayment}>Pay Now</button>
+      <button className="pay-now-btn" onClick={handlePayment}>
+        Pay Now
+      </button>
 
       {qrData && (
         <div>

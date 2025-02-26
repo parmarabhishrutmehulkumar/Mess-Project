@@ -8,15 +8,10 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    if (window.confirm("Are you sure you want to logout?")) {
-      // Clear authentication data
-      localStorage.removeItem("token"); 
-      localStorage.removeItem("user"); 
-      sessionStorage.clear(); 
-
-      // Redirect to login page
-      navigate("/login");
-    }
+    localStorage.removeItem("token"); 
+    localStorage.removeItem("user"); 
+    sessionStorage.clear(); 
+    navigate("/");
   };
 
   return (
@@ -41,7 +36,7 @@ const Sidebar = () => {
           <Link to="/complaint"><FaExclamationTriangle className="icon" /> {!isCollapsed && "Complaint"}</Link>
         </li>
         <li>
-          <Link to="/login" onClick={handleLogout} className="logout-btn">
+          <Link to="/signin" onClick={handleLogout} className="logout-btn">
             <FaSignOutAlt className="icon" /> {!isCollapsed && "Logout"}
           </Link>
         </li>
