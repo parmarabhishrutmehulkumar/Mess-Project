@@ -6,6 +6,7 @@ const studentSchema = new mongoose.Schema({
   password: String,
   role: { type: String, default: 'student' },
   UID: String,
+  qrCode:String
 });
 
 module.exports = mongoose.model('Student', studentSchema);

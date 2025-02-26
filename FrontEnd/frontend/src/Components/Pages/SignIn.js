@@ -9,10 +9,11 @@ const SignIn = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    role: "",
   });
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     setError("");
 
@@ -22,18 +23,12 @@ const SignIn = () => {
       return;
     }
 
-    const { data } = axios
-      .post("http://localhost:5000/api/auth/signin", formData)
-      .then((response) => {
-        console.log("Sign-in successful:", response.data);
-        localStorage.setItem("user", JSON.stringify(response.data)); // Store user data in local storage
-        navigate("/home");
-      })
-      .catch((error) => {
-        // Handle sign-in error
-        console.error("Sign-in error:", error);
-        setError("Sign-in failed. Please check your credentials.");
-      });
+    const {data} =await axios.post("http://localhost:5000/api/auth/signin", formData)
+
+    console.log(data)
+     
+    localStorage.setItem("user", JSON.stringify(data.userDetails)); // Store user data in local storage
+    navigate("/home");
   };
 
   const [error, setError] = useState("");
@@ -106,6 +101,7 @@ const SignIn = () => {
               value={formData.role}
               onChange={handleChange}
             >
+              <option value="">Select Role</option>
               <option value="student">Student</option>
               <option value="faculty">Faculty</option>
             </select>
