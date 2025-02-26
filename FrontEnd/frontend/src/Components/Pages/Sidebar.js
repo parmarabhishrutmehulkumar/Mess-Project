@@ -41,9 +41,9 @@ const Sidebar = () => {
           <Link to="/complaint"><FaExclamationTriangle className="icon" /> {!isCollapsed && "Complaint"}</Link>
         </li>
         <li>
-          <button onClick={handleLogout} className="logout-btn">
+          <Link to="/login" onClick={handleLogout} className="logout-btn">
             <FaSignOutAlt className="icon" /> {!isCollapsed && "Logout"}
-          </button>
+          </Link>
         </li>
       </ul>
     </aside>

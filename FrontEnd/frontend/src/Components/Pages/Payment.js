@@ -17,7 +17,28 @@ const Payment = () => {
     setTicket({ ...ticket, [e.target.name]: e.target.value });
   };
 
+  const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+
   const handlePayment = async () => {
+    const scriptLoaded = await loadRazorpayScript();
+
+    if (!scriptLoaded) {
+      alert("Failed to load Razorpay SDK. Please check your internet connection.");
+      return;
+    }
+
     try {
       const { data } = await axios.post("http://localhost:5000/api/order", {
         ...ticket,
@@ -52,6 +73,7 @@ const Payment = () => {
       razorpay.open();
     } catch (error) {
       console.error("Error processing payment", error);
+      alert("Error processing payment. Please try again.");
     }
   };
 

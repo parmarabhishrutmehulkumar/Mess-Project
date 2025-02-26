@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";  
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import "../Styles/Signup.css";
 
@@ -22,7 +23,7 @@ const Signup = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setSuccessMessage("");
@@ -32,11 +33,25 @@ const Signup = () => {
       return;
     }
 
-    setSuccessMessage("Signup successful!");
+    // Here, you would typically make an API call to sign up the user
+    // Simulating success for now:
 
+    const {data} =await axios.post("http://localhost:5000/api/auth/signup", formData);
+
+    localStorage.setItem("user", JSON.stringify(data));
+
+    
+
+    console.log(data)
+    setSuccessMessage("Account created successfully!");
+
+    if (data) {
+      navigate("/signin"); // Redirect to sign-in page after successful signup
+    }
     setTimeout(() => {
       navigate("/signin");
     }, 2000); // Added the missing timeout value (2 seconds)
+
   };
 
   return (

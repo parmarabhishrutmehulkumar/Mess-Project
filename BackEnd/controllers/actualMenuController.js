@@ -1,6 +1,6 @@
 const ActualMenu = require("../models/ActualMenu");
 
-const actualMenuController = async (req, res) => {
+const placeOrder = async (req, res) => {
     try {
         const { dish, price, category, available } = req.body;
         const newMenuItem = new ActualMenu({ dish, price, category, available });
@@ -19,4 +19,4 @@ const getMenuItems = async (req, res) => {
     }
 };
 
-module.exports = {actualMenuController, getMenuItems};
+module.exports = {placeOrder, getMenuItems};
