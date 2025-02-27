@@ -10,14 +10,17 @@ const AdminSignIn = () => {
     password: "",});
   const navigate = useNavigate();
 
-  const handleSignIn = (e) => {
+  const handleSignIn = async(e) => {
     e.preventDefault();
 
-    const {data}  = axios.post("http://localhost:5000/api/staff/signin", credentials);
-    console.log(data);
-    setTimeout(() => {
-      navigate("/admin/home"); // Redirect to admin dashboard
-    });
+    const {data}  = await axios.post("http://localhost:5000/api/staff/signin", credentials);
+
+    localStorage.setItem("staff", JSON.stringify(data)); // Store user data in local storage
+    if(data){
+      setTimeout(() => {
+        navigate("/admin/home");
+      }, 1000);
+    }
   };
 
   return (

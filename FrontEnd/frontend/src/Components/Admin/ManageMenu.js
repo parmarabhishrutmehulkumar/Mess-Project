@@ -8,6 +8,8 @@ const ManageMenu = () => {
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedMeal, setSelectedMeal] = useState("");
 
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
   useEffect(() => {
     fetchMenu();
   }, []);
@@ -24,12 +26,11 @@ const ManageMenu = () => {
   const handleUpdate = async () => {
     if (selectedDay && selectedMeal && newDish) {
       try {
-        const response = await axios.post("http://localhost:5000/api/menu", {
-          dish: newDish,
+        const response = await axios.post("http://localhost:5000/api/menu/add", {
+          day: selectedDay,
           category: selectedMeal,
-          available: true,
+          dish: newDish,
         });
-
         setMenu([...menu, response.data.newMenuItem]);
         setNewDish("");
         setSelectedDay("");
@@ -54,14 +55,17 @@ const ManageMenu = () => {
           </tr>
         </thead>
         <tbody>
-          {menu.map((item) => (
-            <tr key={item._id}>
-              <td>{item.day}</td>
-              <td>{item.category === "breakfast" ? item.dish : ""}</td>
-              <td>{item.category === "lunch" ? item.dish : ""}</td>
-              <td>{item.category === "dinner" ? item.dish : ""}</td>
-            </tr>
-          ))}
+          {days.map((day) => {
+            const menuItem = menu.filter(item => item.day.toLowerCase() === day.toLowerCase());
+            return (
+              <tr key={day}>
+                <td>{day}</td>
+                <td>{menuItem.find(item => item.category === "breakfast")?.dish || "-"}</td>
+                <td>{menuItem.find(item => item.category === "lunch")?.dish || "-"}</td>
+                <td>{menuItem.find(item => item.category === "dinner")?.dish || "-"}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
 
@@ -69,16 +73,14 @@ const ManageMenu = () => {
         <h3>Update Menu</h3>
         <select value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
           <option value="">Select Day</option>
-          {["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map((day) => (
-            <option key={day} value={day}>
-              {day}
-            </option>
+          {days.map((day) => (
+            <option key={day} value={day.toLowerCase()}>{day}</option>
           ))}
         </select>
 
         <select value={selectedMeal} onChange={(e) => setSelectedMeal(e.target.value)}>
           <option value="">Select Meal Type</option>
-          <option value="morning">Breakfast</option>
+          <option value="breakfast">Breakfast</option>
           <option value="lunch">Lunch</option>
           <option value="dinner">Dinner</option>
         </select>

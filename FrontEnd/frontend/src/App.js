@@ -35,8 +35,6 @@ function App() {
   }, [darkMode]);
 
 
-  const UserInfo = localStorage.getItem("user");
-  const user = JSON.parse(UserInfo);
 
   return (
     <div className={darkMode ? "dark" : ""}>
@@ -47,12 +45,12 @@ function App() {
           <Route path="/signup" element={<Signup darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/signin" element={<SignIn darkMode={darkMode} setDarkMode={setDarkMode} />} />
           
-          {user && <Route path="/home" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />}
-          {user && <Route path="/profile" element={<Profile darkMode={darkMode} />} />}
-          {user && <Route path="/settings" element={<Settings darkMode={darkMode} setDarkMode={setDarkMode} />} />}
-          {user &&<Route path="/feedback" element={<Feedback darkMode={darkMode} />} />}
-          {user &&<Route path="/complaint" element={<Complaint darkMode={darkMode} />} />}
-          {user && <Route path="/purchase-ticket" element={<TicketPurchase darkMode={darkMode} />} />}
+          { <Route path="/home" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />}
+          {<Route path="/profile" element={<Profile darkMode={darkMode} />} />}
+          {<Route path="/settings" element={<Settings darkMode={darkMode} setDarkMode={setDarkMode} />} />}
+          {<Route path="/feedback" element={<Feedback darkMode={darkMode} />} />}
+          {<Route path="/complaint" element={<Complaint darkMode={darkMode} />} />}
+          {<Route path="/purchase-ticket" element={<TicketPurchase darkMode={darkMode} />} />}
 
           {/* Admin Routes */}
           <Route path="/admin/signup" element={<AdminSignup />} />

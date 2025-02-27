@@ -12,7 +12,9 @@ import {
   FaShoppingCart,
 } from "react-icons/fa";
 import "../Styles/Home.css";
-import Payment from "./Payment"; // Import the Payment component
+import Payment from "./Payment";
+import { Button, Typography, Modal, Box, Avatar } from "@mui/material"; // Import the Payment component
+import axios from "axios";
 
 const Home = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -25,12 +27,26 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("today");
+  const [open, setOpen] = React.useState(false);
+
   const [selectedMeal, setSelectedMeal] = useState(null); // State to hold selected meal for payment
   const sliderRef = useRef(null);
   const sliderInterval = useRef(null);
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => !prevMode);
+  };
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
   };
 
   const toggleMobileMenu = () => {
@@ -96,7 +112,8 @@ const Home = () => {
       sliderInterval.current = null;
     }
   };
-
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const resumeSlider = () => {
     if (!sliderInterval.current) {
       sliderInterval.current = setInterval(nextSlide, 5000);
@@ -203,6 +220,17 @@ const Home = () => {
     setSelectedMeal(mealType);
   };
 
+  const userInfo = JSON.parse(localStorage.getItem("user"));
+
+  const handlemenu = async() => {
+    try {
+      const {data} = await axios.get("http://localhost:5000/api/menu");
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching menu:", error);
+    }
+  }
+
   return (
     <>
       <div className="home-container">
@@ -252,9 +280,40 @@ const Home = () => {
               >
                 {darkMode ? <FaSun size={20} /> : <FaMoon size={20} />}
               </div>
-              <Link to="/profile" className="header-icon">
-                <FaUser size={20} />
-              </Link>
+              <FaUser size={20} cursor={"pointer"} onClick={handleOpen} />
+              <div>
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <Typography
+                      id="modal-modal-title"
+                      variant="h6"
+                      component="h2"
+                      color="black"
+                    >
+                     Name: {userInfo ? userInfo.name : "Guest"}
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                      Email: {userInfo ? userInfo.email : "Guest"}
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                      Role: {userInfo ? userInfo.role : "Guest"}{" "}
+                    </Typography>
+
+                      {
+                        userInfo && userInfo.role === "student" ? (
+                          <Avatar src={userInfo.qrCode} sx={{ width: 96, height: 96 }}> </Avatar>
+                        ) : null
+                      }
+              
+                  </Box>
+                </Modal>
+              </div>
+              ;
             </div>
           </div>
         </header>
@@ -397,7 +456,7 @@ const Home = () => {
               </button>
               <button
                 className={`menu-tab ${activeTab === "week" ? "active" : ""}`}
-                onClick={() => handleTabChange("week")}
+                onClick={handlemenu}
               >
                 Weekly Menu
               </button>

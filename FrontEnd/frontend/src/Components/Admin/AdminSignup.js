@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUser, FaLock, FaUserPlus } from "react-icons/fa";
+import axios from "axios"
 import "./AdminSignup.css";
 
 const AdminSignup = () => {
@@ -53,7 +54,7 @@ const AdminSignup = () => {
     return errors;
   };
   
-  const handleSignup = (e) => {
+  const handleSignup = async(e) => {
     e.preventDefault();
     
     const errors = validateForm();
@@ -61,14 +62,23 @@ const AdminSignup = () => {
     
     if (Object.keys(errors).length === 0) {
       setIsSubmitting(true);
-      
-      console.log("Admin Signed Up:", adminData);
-      
-      // Simulate signup success
+
+      const {data} = await axios.post("http://localhost:5000/api/staff/signup" , adminData);
+
+      localStorage.setItem("staff", JSON.stringify(data));
+
+
+      if(data){
+
+          // Simulate signup success
       setTimeout(() => {
         setIsSubmitting(false);
-        navigate("/admin/signin"); // Redirect to admin sign-in
+        navigate("/admin/home"); // Redirect to admin sign-in
       }, 1000);
+
+      }
+      
+    
     }
   };
   
