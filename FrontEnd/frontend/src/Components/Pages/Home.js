@@ -28,6 +28,7 @@ const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("today");
   const [open, setOpen] = React.useState(false);
+  const [menu, setMenu] = useState([]);
 
   const [selectedMeal, setSelectedMeal] = useState(null); // State to hold selected meal for payment
   const sliderRef = useRef(null);
@@ -223,12 +224,18 @@ const Home = () => {
   const userInfo = JSON.parse(localStorage.getItem("user"));
 
   const handlemenu = async() => {
+
+
+    
     try {
       const {data} = await axios.get("http://localhost:5000/api/menu");
+      setMenu(data);
       console.log(data);
     } catch (error) {
       console.error("Error fetching menu:", error);
     }
+
+
   }
 
   return (
@@ -496,14 +503,14 @@ const Home = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {weeklyMenu.map((dayMenu, index) => (
-                        <tr key={index}>
-                          <td>{dayMenu.day}</td>
-                          <td>{dayMenu.breakfast}</td>
-                          <td>{dayMenu.lunch}</td>
-                          <td>{dayMenu.dinner}</td>
-                        </tr>
-                      ))}
+                     {menu.map((item, index) => (
+                       <tr key={index}>
+                         <td>{item.day}</td>
+                         <td>{item.breakfast}</td>
+                         <td>{item.lunch}</td>
+                         <td>{item.dinner}</td>
+                       </tr>
+                     ))}
                     </tbody>
                   </table>
                 </div>

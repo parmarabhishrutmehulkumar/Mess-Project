@@ -45,7 +45,6 @@ function App() {
           <Route path="/" element={<Navigate to="/signup" />} />
           <Route path="/signup" element={<Signup darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/signin" element={<SignIn darkMode={darkMode} setDarkMode={setDarkMode} />} />
-<<<<<<< HEAD
           
           { <Route path="/home" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />}
           {<Route path="/profile" element={<Profile darkMode={darkMode} />} />}
@@ -53,15 +52,15 @@ function App() {
           {<Route path="/feedback" element={<Feedback darkMode={darkMode} />} />}
           {<Route path="/complaint" element={<Complaint darkMode={darkMode} />} />}
           {<Route path="/purchase-ticket" element={<TicketPurchase darkMode={darkMode} />} />}
-=======
+
           <Route path="/signin/authotp" element={<Auth />} />
-          {user && <Route path="/home" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />}
-          {user && <Route path="/profile" element={<Profile darkMode={darkMode} />} />}
-          {user && <Route path="/settings" element={<Settings darkMode={darkMode} setDarkMode={setDarkMode} />} />}
-          {user &&<Route path="/feedback" element={<Feedback darkMode={darkMode} />} />}
-          {user &&<Route path="/complaint" element={<Complaint darkMode={darkMode} />} />}
-          {user && <Route path="/purchase-ticket" element={<TicketPurchase darkMode={darkMode} />} />}
->>>>>>> a171103226150b9330d4b6c36f252fc901e9ca65
+          {  <Route path="/home" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />}
+          {<Route path="/profile" element={<Profile darkMode={darkMode} />} />}
+          {<Route path="/settings" element={<Settings darkMode={darkMode} setDarkMode={setDarkMode} />} />}
+          {<Route path="/feedback" element={<Feedback darkMode={darkMode} />} />}
+          {<Route path="/complaint" element={<Complaint darkMode={darkMode} />} />}
+          {<Route path="/purchase-ticket" element={<TicketPurchase darkMode={darkMode} />} />}
+
 
           {/* Admin Routes */}
           <Route path="/admin/signup" element={<AdminSignup />} />

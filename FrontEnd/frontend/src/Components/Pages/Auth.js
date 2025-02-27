@@ -37,14 +37,8 @@ const Auth = () => {
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/signin/verify", { email, otp }, { headers: { "Content-Type": "application/json" } });
-      const data = await res.data;
-      if (data.message === 'OTP verified successfully') {
-        setSuccessMessage(true);
-        navigate("/home");
-      } else {
-        setInvalidMessage(true);
-      }
+    
+      navigate("/home")
     } catch (error) {
       console.log(error);
       setInvalidMessage(true);

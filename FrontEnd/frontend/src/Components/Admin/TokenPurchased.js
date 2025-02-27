@@ -3,7 +3,38 @@ import axios from "axios";
 import "../../Components/AdminCSS/TokenPurchased.css"; // Add CSS file if needed
 
 const TokenPurchased = () => {
-  const [tokens, setTokens] = useState([]);
+  const [tokens, setTokens] = useState([
+    {
+      orderId: "ORD12345",
+      paymentId: "PAY12345",
+      ticketDetails: {
+        mealType: "Breakfast",
+        quantity: 2,
+        amount: 140,
+      },
+      status: "Completed",
+    },
+    {
+      orderId: "ORD12346",
+      paymentId: "PAY12346",
+      ticketDetails: {
+        mealType: "Lunch",
+        quantity: 1,
+        amount: 70,
+      },
+      status: "Pending",
+    },
+    {
+      orderId: "ORD12347",
+      paymentId: "PAY12347",
+      ticketDetails: {
+        mealType: "Dinner",
+        quantity: 3,
+        amount: 210,
+      },
+      status: "Completed",
+    },
+  ]);
 
   useEffect(() => {
     const fetchTokens = async () => {

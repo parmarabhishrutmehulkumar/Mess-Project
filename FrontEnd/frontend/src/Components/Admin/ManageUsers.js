@@ -7,10 +7,9 @@ const ManageUsers = () => {
   useEffect(() => {
     // Dummy user data instead of API call
     const dummyUsers = [
-      { _id: "1", username: "john_doe", email: "john@example.com", role: "Admin" },
-      { _id: "2", username: "jane_doe", email: "jane@example.com", role: "User" },
-      { _id: "3", username: "michael_smith", email: "michael@example.com", role: "Moderator" },
-      { _id: "4", username: "alice_wonder", email: "alice@example.com", role: "User" },
+      { _id: "1", username: "newstaff4", email: "newstaff4@gamil.com", role: "admin" },
+      { _id: "2", username: "newstudent", email: "newstudent089@gmail.com", role: "student" },
+      { _id: "3", username: "newfaculty", email: "newfaculty98@gmail.com", role: "faculty" },
     ];
     setUsers(dummyUsers);
   }, []);
