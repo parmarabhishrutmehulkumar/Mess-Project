@@ -1,56 +1,139 @@
-/* ManageMenu Component CSS */
+/* 🌅 Light Mode Background */
+body {
+  background: linear-gradient(#ffffff);
+  color: #222;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* 💎 Glass Effect Container */
 .menu-container {
-    max-width: 800px;
-    margin: auto;
-    text-align: center;
-    background: white;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-container:hover {
+  transform: scale(1.02);
+}
+
+/* 🎨 Soft Title */
+h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #5a67d8;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+  margin-bottom: 20px;
+}
+
+/* 🍽 Lighter Menu Table */
+.menu-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.menu-table th,
+.menu-table td {
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #333;
+}
+
+.menu-table th {
+  background: linear-gradient(45deg, #5a67d8, #7f9cf5);
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.menu-table tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 🎛 Admin Controls */
+.admin-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* ✨ Softer Input & Select Fields */
+.admin-controls select,
+.admin-controls input {
+  padding: 12px;
+  width: 80%;
+  max-width: 400px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: linear-gradient(45deg, #e3e7f1, #ffffff);
+  color: #333;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+}
+
+.admin-controls select:hover,
+.admin-controls input:hover {
+  border-color: #5a67d8;
+}
+
+.admin-controls input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* 🚀 Modern Gradient Button */
+.admin-controls button {
+  padding: 12px 24px;
+  background: linear-gradient(45deg, #5a67d8, #7f9cf5);
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(90, 103, 216, 0.3);
+}
+
+.admin-controls button:hover {
+  background: linear-gradient(45deg, #7f9cf5, #5a67d8);
+  box-shadow: 0 6px 15px rgba(90, 103, 216, 0.5);
+  transform: translateY(-2px);
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+  .menu-container {
+    width: 90%;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   }
-  
-  .menu-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
+
   .menu-table th,
   .menu-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .menu-table th {
-    background: #007bff;
-    color: white;
-  }
-  
-  .add-menu-item {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  
-  .add-menu-item input,
-  .add-menu-item select {
+    font-size: 14px;
     padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
   }
-  
-  .add-menu-item button {
-    background: #28a745;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 5px;
+
+  .admin-controls select,
+  .admin-controls input {
+    font-size: 14px;
+    padding: 10px;
   }
-  
-  .add-menu-item button:hover {
-    background: #218838;
+
+  .admin-controls button {
+    font-size: 14px;
+    padding: 10px 20px;
   }
-  
+}

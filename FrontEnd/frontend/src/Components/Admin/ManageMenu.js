@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
 import "../../Components/AdminCSS/ManageMenu.css";
 
@@ -7,6 +8,8 @@ const ManageMenu = () => {
   const [newDish, setNewDish] = useState("");
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedMeal, setSelectedMeal] = useState("");
+
+  const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
     fetchMenu();
@@ -85,6 +88,9 @@ const ManageMenu = () => {
 
         <input type="text" placeholder="Enter New Dish" value={newDish} onChange={(e) => setNewDish(e.target.value)} />
         <button onClick={handleUpdate}>Update</button>
+
+        {/* 🏠 Back Button */}
+        <button className="back-button" onClick={() => navigate(-1)}>⬅ Back</button>
       </div>
     </div>
   );

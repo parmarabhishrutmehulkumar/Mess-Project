@@ -72,3 +72,72 @@
     width: 60px; /* Adjust collapsed width for smaller screens */
   }
 }
+/* Admin Home Page Styles */
+.admin-home {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  
+}
+
+.admin-container {
+  flex: 1;
+  padding: 20px;
+  margin-left: -5px;
+  
+}
+
+.admin-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  background: transparent;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: none;
+  margin-bottom: 20px;
+}
+
+.dashboard-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.metric-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+}
+
+.metric-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.users {
+  color: #007bff;
+}
+
+.tokens {
+  color: #28a745;
+}
+
+.attendance {
+  color: #ffc107;
+}
+
+.complaints {
+  color: #dc3545;
+}

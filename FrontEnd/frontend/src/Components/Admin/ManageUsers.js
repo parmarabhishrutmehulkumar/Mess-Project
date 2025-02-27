@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "../../Components/AdminCSS/ManageUsers.css"; // Add styles
-import axios from "axios"; // Make API calls
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // Fetch users from backend API
-    axios.get("http://localhost:5000/api/admin/users")
-      .then((response) => setUsers(response.data))
-      .catch((error) => console.error("Error fetching users:", error));
+    // Dummy user data instead of API call
+    const dummyUsers = [
+      { _id: "1", username: "john_doe", email: "john@example.com", role: "Admin" },
+      { _id: "2", username: "jane_doe", email: "jane@example.com", role: "User" },
+      { _id: "3", username: "michael_smith", email: "michael@example.com", role: "Moderator" },
+      { _id: "4", username: "alice_wonder", email: "alice@example.com", role: "User" },
+    ];
+    setUsers(dummyUsers);
   }, []);
 
   return (
