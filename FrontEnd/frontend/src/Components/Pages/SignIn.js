@@ -31,7 +31,7 @@ const SignIn = () => {
       console.log(data);
 
       localStorage.setItem("user", JSON.stringify(data.userDetails)); // Store user data in local storage
-      navigate("/home");
+      navigate("/signin/authotp");
     } catch (error) {
       setError("Sign-in failed. Please check your credentials.");
     }
