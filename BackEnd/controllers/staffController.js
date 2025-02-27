@@ -1,11 +1,13 @@
 const MessStaff = require('../models/messStaff');
 const bcrypt = require('bcrypt');
-const generateToken = require("../config/generateToken")
+const generateToken = require("../config/generateToken");
+const messStaff = require('../models/messStaff');
 
 const staffSignup = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const {  email, password, confirmPassword } = req.body;
 
+    
         // Check if a user with the same email already exists
         const existingUser = await MessStaff.findOne({ email });
         if (existingUser) {
@@ -15,20 +17,18 @@ const staffSignup = async (req, res) => {
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
 
+        if(password !== confirmPassword){
+            return res.status(400).json({ message: 'Passwords do not match' });
+        }
+
         // Create a new user
-        const user = new MessStaff({
-            name,       
-            email,
-            password: hashedPassword,
-            role: 'mess-staff',
-        });
+        const user = await MessStaff.create({  email, password: hashedPassword , confirmPassword });
 
-        // Save the user to the database
-        await user.save();
+    
 
-        const token = generateToken(user._id, user.role);
+        const token = generateToken(user._id);
 
-        res.status(201).json({ message: 'User registered successfully' , user, token});
+        res.status(201).json({user, token});
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
@@ -38,6 +38,7 @@ const staffSignup = async (req, res) => {
 const staffSignin = async (req, res) => {
     try {    
         const { email, password } = req.body;
+        console.log(req.body);
         const user = await MessStaff.findOne({ email });
         if (!user) {
             return res.status(404).json({ message: 'User not found' });

@@ -3,7 +3,7 @@ const { addMenuItem, getMenuItems, updateMenuItem, deleteMenuItem } = require('.
 const {verifyToken} = require('../config/verifyToken');
 const router = express.Router();
 
-router.post('/add', verifyToken, addMenuItem);
+router.post('/add', addMenuItem);
 router.get('/', getMenuItems);
 router.put('/update/:id', verifyToken, updateMenuItem);
 router.delete('/delete/:id', verifyToken, deleteMenuItem);
