@@ -10,7 +10,7 @@ import Settings from './Components/Pages/Settings';
 import Feedback from './Components/Pages/Feedback';
 import Complaint from './Components/Pages/Complaint';
 import TicketPurchase from './Components/Pages/TicketPurchase';
-
+import Auth from './Components/Pages/Auth';
 // Admin Components
 import AdminSignup from './Components/Admin/AdminSignup';
 import AdminSignin from './Components/Admin/AdminSignin';
@@ -21,7 +21,8 @@ import ManageMenu from './Components/Admin/ManageMenu';
 import TokenPurchased from './Components/Admin/TokenPurchased';
 import Attendance from './Components/Admin/Attendance';
 import Complaints from './Components/Admin/Complaints';
-import StudentAttendence from './Components/Pages/StudentAttendence';
+//import StudentAttendence from './Components/Pages/StudentAttendence';
+
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
           <Route path="/" element={<Navigate to="/signup" />} />
           <Route path="/signup" element={<Signup darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/signin" element={<SignIn darkMode={darkMode} setDarkMode={setDarkMode} />} />
+<<<<<<< HEAD
           
           { <Route path="/home" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />}
           {<Route path="/profile" element={<Profile darkMode={darkMode} />} />}
@@ -51,17 +53,27 @@ function App() {
           {<Route path="/feedback" element={<Feedback darkMode={darkMode} />} />}
           {<Route path="/complaint" element={<Complaint darkMode={darkMode} />} />}
           {<Route path="/purchase-ticket" element={<TicketPurchase darkMode={darkMode} />} />}
+=======
+          <Route path="/signin/authotp" element={<Auth />} />
+          {user && <Route path="/home" element={<Home darkMode={darkMode} setDarkMode={setDarkMode} />} />}
+          {user && <Route path="/profile" element={<Profile darkMode={darkMode} />} />}
+          {user && <Route path="/settings" element={<Settings darkMode={darkMode} setDarkMode={setDarkMode} />} />}
+          {user &&<Route path="/feedback" element={<Feedback darkMode={darkMode} />} />}
+          {user &&<Route path="/complaint" element={<Complaint darkMode={darkMode} />} />}
+          {user && <Route path="/purchase-ticket" element={<TicketPurchase darkMode={darkMode} />} />}
+>>>>>>> a171103226150b9330d4b6c36f252fc901e9ca65
 
           {/* Admin Routes */}
           <Route path="/admin/signup" element={<AdminSignup />} />
           <Route path="/admin/signin" element={<AdminSignin />} />
+        
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/manage-users" element={<ManageUsers />} />
           <Route path="/admin/complaints" element={<Complaints />} />
           <Route path="/admin/manage-menu" element={<ManageMenu />} />
           <Route path="/admin/token-purchased" element={<TokenPurchased />} />
           <Route path="/admin/attendance" element={<Attendance />} />
-
+          
         </Routes>
       </Router>
     </div>

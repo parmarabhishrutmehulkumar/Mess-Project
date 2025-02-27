@@ -9,7 +9,7 @@ const StaffRoutes = require('./routes/staffRoutes');
 //const PurchaseRoutes = require('./routes/purchaseRoutes');
 const AttendenceRoutes = require('./routes/AttendenceRoutes');
 const actualmenuRoutes = require('./routes/actualmenuRoutes');
-
+const otpRoutes = require('./routes/otpRoutes');
 dotenv.config();  
 
 const app = express();
@@ -28,7 +28,7 @@ app.use("/api/order", orderRoutes);
 app.use("/api/attendence",AttendenceRoutes);  
 
 app.use("/api/staff", StaffRoutes); 
-
+app.use("/api/auth", otpRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

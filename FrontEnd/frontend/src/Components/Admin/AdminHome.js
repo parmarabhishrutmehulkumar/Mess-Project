@@ -7,7 +7,7 @@ import AdminSidebar from "./AdminSidebar";
 import "../../Components/AdminCSS/AdminHome.css";
 import { FaUsers, FaShoppingCart, FaUserCheck, FaExclamationTriangle } from "react-icons/fa";
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28FFF"];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#BB2311", "#FF8042", "#A28FFF", "#FF0000"];
 
 const AdminHome = () => {
   const [data, setData] = useState([
@@ -16,6 +16,8 @@ const AdminHome = () => {
     { day: "Wednesday", dishes: 60 },
     { day: "Thursday", dishes: 90 },
     { day: "Friday", dishes: 80 },
+    { day: "Saturday", dishes: 50 },
+    { day: "Sunday", dishes: 100 }
   ]); // Dummy Data for UI testing
 
   const [metrics, setMetrics] = useState({
