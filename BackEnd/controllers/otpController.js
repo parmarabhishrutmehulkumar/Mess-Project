@@ -42,8 +42,8 @@ res.json({otp})
 // Function to verify OTP
 exports.verifyOtp = (req, res) => {
   const { email, otp } = req.body;
-  console.log("Verifying OTP:", otp, "for email:", email);
-  console.log("Stored OTP:", otpStore[email]);
+  console.log(req.body)
+
 
   if (otpStore[email] && otpStore[email] === parseInt(otp)) {
     delete otpStore[email]; // Remove OTP after verification
