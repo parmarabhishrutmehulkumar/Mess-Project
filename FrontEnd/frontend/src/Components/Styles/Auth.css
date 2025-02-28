@@ -1,0 +1,105 @@
+/* General Page Styling */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #121212;
+}
+
+/* Form Styling */
+.auth-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    background-color: #1e1e1e;
+    border: 2px solid #4caf50;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 15px rgba(0, 255, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.auth-form:hover {
+    transform: scale(1.02);
+}
+
+/* Heading */
+.auth-title {
+    color: #4caf50;
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* Labels */
+.auth-label {
+    display: block;
+    text-align: left;
+    color: #ffffff;
+    margin: 10px 0 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Input Fields */
+.auth-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #282c34;
+    color: #ffffff;
+    border: 2px solid #4caf50;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.auth-input:focus {
+    border-color: #00e676;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+}
+
+/* Buttons */
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #4caf50, #00e676);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.auth-button:hover {
+    background: linear-gradient(90deg, #00e676, #4caf50);
+    transform: scale(1.05);
+}
+
+/* Snackbar Notifications */
+.MuiSnackbar-root {
+    bottom: 20px !important;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+    .auth-form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .auth-title {
+        font-size: 22px;
+    }
+
+    .auth-button {
+        font-size: 14px;
+    }
+}

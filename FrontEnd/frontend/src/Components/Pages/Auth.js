@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Alert, Snackbar } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import "../Styles/Auth.css";
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
@@ -17,7 +17,7 @@ const Auth = () => {
   const handleSendOtp = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/", { email }, { headers: { "Content-Type": "application/json" } });
+      const res = await axios.post("http://localhost:5000/api/auth/", { email,otp }, { headers: { "Content-Type": "application/json" } });
       const data = await res.data;
       console.log(data);
       setReceivedOtp(data.otp);
@@ -37,8 +37,14 @@ const Auth = () => {
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     try {
-    
-      navigate("/home")
+      const res = await axios.post("http://localhost:5000/api/auth/verify", { email, otp }, { headers: { "Content-Type": "application/json" } });
+      const data = await res.data;
+      if (data.message === 'OTP verified successfully') {
+        setSuccessMessage(true);
+        navigate("/home");
+      } else {
+        setInvalidMessage(true);
+      }
     } catch (error) {
       console.log(error);
       setInvalidMessage(true);

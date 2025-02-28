@@ -10,6 +10,10 @@ const ManageUsers = () => {
       { _id: "1", username: "newstaff4", email: "newstaff4@gamil.com", role: "admin" },
       { _id: "2", username: "newstudent", email: "newstudent089@gmail.com", role: "student" },
       { _id: "3", username: "newfaculty", email: "newfaculty98@gmail.com", role: "faculty" },
+      { _id: "1", username: "Abhi", email: "abhi@gmail.com", role: "Admin" },
+      { _id: "2", username: "Rohan", email: "rohan123@gmail.com", role: "Student" },
+      { _id: "3", username: "Divyaprakash", email: "divy1@gmail.com", role: "Student" },
+      { _id: "4", username: "Khushi", email: "khushigendi@gmail.com", role: "Faculty" },
     ];
     setUsers(dummyUsers);
   }, []);
